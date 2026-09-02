@@ -8,7 +8,7 @@ import { apiRequest } from '@/lib/api';
 import {
   Users, CreditCard, BookOpen, GraduationCap, ShieldCheck, CheckCircle2,
   AlertTriangle, DollarSign, Calendar, FileText, Plus, Search, ChevronRight,
-  TrendingUp, Download, Sparkles, Send, PhoneCall, Check, UserCheck
+  TrendingUp, Download, Sparkles, Send, PhoneCall, Check, UserCheck, Filter
 } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -17,7 +17,8 @@ export default function DashboardPage() {
   const [currentRole, setCurrentRole] = useState('SCHOOL_ADMIN');
   const [schoolStatus, setSchoolStatus] = useState<'TRIAL' | 'ACTIVE' | 'READ_ONLY' | 'SUSPENDED'>('TRIAL');
   const [trialDays, setTrialDays] = useState(14);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('ALL');
 
   // Sync persistent theme and language on mount
   useEffect(() => {
@@ -58,6 +59,7 @@ export default function DashboardPage() {
     { id: '1', matricule: 'EXC-2025-001', name: 'Junior Mballa', class: '6ème A', due: 75000, paid: 50000, remaining: 25000, status: 'PARTIAL', avg: 15.14, rank: 2 },
     { id: '2', matricule: 'EXC-2025-002', name: 'Claire Ngo Nsoga', class: '6ème A', due: 75000, paid: 75000, remaining: 0, status: 'PAID', avg: 16.71, rank: 1 },
     { id: '3', matricule: 'EXC-2025-003', name: 'Paul Kamga', class: 'Terminale C1', due: 120000, paid: 40000, remaining: 80000, status: 'DEBT', avg: 13.50, rank: 5 },
+    { id: '4', matricule: 'EXC-2025-004', name: 'Grace Fon Tiku', class: 'Form 1 Arts', due: 85000, paid: 85000, remaining: 0, status: 'PAID', avg: 17.20, rank: 1 },
   ]);
 
   const [schools, setSchools] = useState([
@@ -82,6 +84,15 @@ export default function DashboardPage() {
   const [attendanceMsg, setAttendanceMsg] = useState('');
 
   const t = translations[lang];
+
+  // Filtered Students Search
+  const filteredStudents = students.filter(s => {
+    const matchesSearch = s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          s.matricule.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          s.class.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesStatus = statusFilter === 'ALL' || s.status === statusFilter;
+    return matchesSearch && matchesStatus;
+  });
 
   const handleSimulatePayment = () => {
     if (!selectedStudentForPay) return;
@@ -141,7 +152,7 @@ export default function DashboardPage() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto w-full px-6 py-8 flex-1 space-y-8">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 flex-1 space-y-8">
 
         {/* Dynamic Dashboard Role Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 glass-card p-6 border-l-4 border-l-sky-500 shadow-md">
@@ -259,17 +270,44 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Students Table */}
+            {/* Students Table with Search & Filter */}
             <div className="glass-card p-6 space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <h3 className="font-extrabold text-lg">Élèves de l'Établissement</h3>
-                <button
-                  onClick={() => alert("Formulaire d'inscription d'un nouvel élève ouvert.")}
-                  className="px-3.5 py-2 rounded-xl bg-sky-600 text-white font-bold text-xs hover:bg-sky-700 transition flex items-center space-x-1.5 shadow-sm"
-                >
-                  <Plus className="w-4 h-4" />
-                  <span>{t.btn_add_student}</span>
-                </button>
+                
+                <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+                  {/* Search Bar */}
+                  <div className="relative flex-1 sm:w-64">
+                    <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                    <input
+                      type="text"
+                      placeholder="Rechercher par nom, matricule..."
+                      className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-xs font-semibold focus:ring-2 focus:ring-sky-500 outline-none"
+                      value={searchQuery}
+                      onChange={e => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+
+                  {/* Status Filter */}
+                  <select
+                    className="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-xs font-bold outline-none"
+                    value={statusFilter}
+                    onChange={e => setStatusFilter(e.target.value)}
+                  >
+                    <option value="ALL">Tous les statuts</option>
+                    <option value="PAID">À Jour</option>
+                    <option value="PARTIAL">Partiellement Payé</option>
+                    <option value="DEBT">Impayé</option>
+                  </select>
+
+                  <button
+                    onClick={() => alert("Formulaire d'inscription d'un nouvel élève ouvert.")}
+                    className="px-3.5 py-2 rounded-xl bg-sky-600 text-white font-bold text-xs hover:bg-sky-700 transition flex items-center space-x-1.5 shadow-sm"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>{t.btn_add_student}</span>
+                  </button>
+                </div>
               </div>
 
               <div className="overflow-x-auto">
@@ -287,7 +325,7 @@ export default function DashboardPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-                    {students.map(s => (
+                    {filteredStudents.map(s => (
                       <tr key={s.id} className="hover:bg-slate-50 dark:hover:bg-slate-900/50 transition">
                         <td className="p-3 font-mono font-bold text-sky-600 dark:text-sky-400">{s.matricule}</td>
                         <td className="p-3 font-bold">{s.name}</td>
