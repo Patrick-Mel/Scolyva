@@ -1,0 +1,131 @@
+# ==============================================================================
+# SENSITIVE & SECURITY DATA (NEVER COMMIT SECRETS TO GITHUB!)
+# ==============================================================================
+.env
+.env.*
+!.env.example
+*.env
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+secrets/
+config/secrets/
+
+# API Keys, Tokens & Private Credentials
+cinetpay_keys.json
+r2_credentials.json
+google-services.json
+GoogleService-Info.plist
+
+# ==============================================================================
+# PYTHON & DJANGO (BACKEND)
+# ==============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# Django Database & Static/Media Uploads
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+*.db
+backend/staticfiles/
+backend/media/
+backend/db.sqlite3
+
+# Pytest / Coverage / Logs
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# ==============================================================================
+# NODE.JS & NEXT.JS (WEB FRONTEND)
+# ==============================================================================
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+out/
+frontend/out/
+.vercel/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Next.js build cache
+.next/cache/
+
+# ==============================================================================
+# FLUTTER & DART (MOBILE APP)
+# ==============================================================================
+mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/.packages
+mobile/.pub-cache/
+mobile/.pub/
+mobile/build/
+mobile/ios/Pods/
+mobile/ios/Runner.xcworkspace
+mobile/ios/Runner.xcodeproj/project.xcworkspace
+mobile/ios/Runner.xcodeproj/xcuserdata/
+
+# Android Keystore & Private Keys
+*.jks
+*.keystore
+key.properties
+
+# ==============================================================================
+# IDE & SYSTEM FILES
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# VS Code & JetBrains IDE
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.iws
+*.iml
+*.ipr
