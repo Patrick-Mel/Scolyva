@@ -1,21 +1,34 @@
 'use client';
 
 import { useState } from 'react';
-import { ShieldAlert, AlertTriangle, Sparkles, CheckCircle2 } from 'lucide-react';
+import { AlertTriangle, Sparkles, CheckCircle2 } from 'lucide-react';
 import { translations, Language } from '@/lib/i18n';
 
 interface ReadonlyBannerProps {
+  isPublic?: boolean;
   status: 'TRIAL' | 'ACTIVE' | 'READ_ONLY' | 'SUSPENDED';
   trialDaysRemaining?: number;
   lang: Language;
   onSubscribeClick: () => void;
 }
 
-export default function ReadonlyBanner({ status, trialDaysRemaining = 14, lang, onSubscribeClick }: ReadonlyBannerProps) {
+export default function ReadonlyBanner({
+  isPublic = false,
+  status,
+  trialDaysRemaining = 14,
+  lang,
+  onSubscribeClick
+}: ReadonlyBannerProps) {
   const t = translations[lang];
 
+  // RULE: Never show trial banner on public vitrine page (scolyva.com)
+  if (isPublic) {
+    return null;
+  }
+
+  // Never show banner if paid subscription is fully active
   if (status === 'ACTIVE') {
-    return null; // No banner needed if paid subscription is active
+    return null;
   }
 
   const isReadOnly = status === 'READ_ONLY' || trialDaysRemaining <= 0 || status === 'SUSPENDED';
@@ -36,7 +49,7 @@ export default function ReadonlyBanner({ status, trialDaysRemaining = 14, lang, 
           <span>
             {isReadOnly 
               ? t.trial_expired_banner 
-              : t.trial_active_banner.replace('{days}', trialDaysRemaining.toString())
+              : t.trial_active_banner.replace('{days}', Math.max(0, trialDaysRemaining).toString())
             }
           </span>
         </div>

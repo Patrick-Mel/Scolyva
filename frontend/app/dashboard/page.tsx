@@ -17,10 +17,11 @@ export default function DashboardPage() {
   const [currentRole, setCurrentRole] = useState('SCHOOL_ADMIN');
   const [schoolStatus, setSchoolStatus] = useState<'TRIAL' | 'ACTIVE' | 'READ_ONLY' | 'SUSPENDED'>('TRIAL');
   const [trialDays, setTrialDays] = useState(14);
+  const [schoolName, setSchoolName] = useState('Collège Excellence Douala');
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('ALL');
 
-  // Sync persistent theme and language on mount
+  // Load current school info & real server-side trial countdown from API
   useEffect(() => {
     const savedTheme = localStorage.getItem('scolyva_theme');
     if (savedTheme === 'dark') {
@@ -35,6 +36,25 @@ export default function DashboardPage() {
     if (savedLang) {
       setLang(savedLang);
     }
+
+    // Fetch school trial info from Django API
+    async function loadSchoolData() {
+      try {
+        const sch = await apiRequest('/tenants/school/current/');
+        if (sch) {
+          setSchoolName(sch.name);
+          setSchoolStatus(sch.status);
+          if (sch.trial_ends_at) {
+            const endsAt = new Date(sch.trial_ends_at).getTime();
+            const diffDays = Math.max(0, Math.ceil((endsAt - Date.now()) / (1000 * 60 * 60 * 24)));
+            setTrialDays(diffDays);
+          }
+        }
+      } catch (err) {
+        // Fallback default
+      }
+    }
+    loadSchoolData();
   }, []);
 
   const toggleTheme = () => {
@@ -133,7 +153,10 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
+      
+      {/* PRIVATE DASHBOARD NAVBAR: Displays Role Selector inside workspace only */}
       <Navbar
+        isPublic={false}
         lang={lang}
         onLanguageChange={handleLanguageChange}
         darkMode={darkMode}
@@ -142,13 +165,15 @@ export default function DashboardPage() {
         onRoleChange={setCurrentRole}
       />
 
+      {/* PRIVATE SCHOOL READONLY BANNER: Rendered ONLY in private school workspace with real server trial days */}
       <ReadonlyBanner
+        isPublic={false}
         status={schoolStatus}
         trialDaysRemaining={trialDays}
         lang={lang}
         onSubscribeClick={() => {
           setSchoolStatus('ACTIVE');
-          alert("Félicitations ! Votre école 'Collège Excellence Douala' est désormais sous abonnement Pro (350,000 FCFA/an) via CinetPay.");
+          alert(`Félicitations ! Votre école '${schoolName}' est désormais sous abonnement Pro (350,000 FCFA/an) via CinetPay.`);
         }}
       />
 
@@ -159,7 +184,7 @@ export default function DashboardPage() {
           <div>
             <div className="flex items-center space-x-2">
               <span className="text-xs font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
-                {currentRole === 'SUPER_ADMIN' ? 'Plateforme Scolyva' : t.dash_school_name}
+                {currentRole === 'SUPER_ADMIN' ? 'Plateforme Scolyva' : schoolName}
               </span>
               <span className="text-xs px-2.5 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 font-bold border border-sky-200 dark:border-sky-800">
                 {currentRole}
@@ -276,7 +301,6 @@ export default function DashboardPage() {
                 <h3 className="font-extrabold text-lg">Élèves de l'Établissement</h3>
                 
                 <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
-                  {/* Search Bar */}
                   <div className="relative flex-1 sm:w-64">
                     <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                     <input
@@ -288,7 +312,6 @@ export default function DashboardPage() {
                     />
                   </div>
 
-                  {/* Status Filter */}
                   <select
                     className="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-xs font-bold outline-none"
                     value={statusFilter}
