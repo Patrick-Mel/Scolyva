@@ -54,7 +54,7 @@ class Command(BaseCommand):
 
         # 2. Super Admin User (Patrick Melaga)
         superadmin, created = User.objects.get_or_create(
-            email='admin@scolyva.com',
+            email='patrickjulienmelaga@gmail.com',
             defaults={
                 'first_name': 'Patrick',
                 'last_name': 'Melaga',
@@ -64,17 +64,14 @@ class Command(BaseCommand):
                 'is_superadmin': True
             }
         )
-        if not created:
-            superadmin.first_name = 'Patrick'
-            superadmin.last_name = 'Melaga'
-            superadmin.is_staff = True
-            superadmin.is_superuser = True
-            superadmin.is_superadmin = True
-            superadmin.save()
-        else:
-            superadmin.set_password('SuperAdmin2026!')
-            superadmin.save()
-        self.stdout.write(self.style.SUCCESS('Super Admin mis à jour: Patrick Melaga (admin@scolyva.com)'))
+        superadmin.first_name = 'Patrick'
+        superadmin.last_name = 'Melaga'
+        superadmin.is_staff = True
+        superadmin.is_superuser = True
+        superadmin.is_superadmin = True
+        superadmin.set_password('Melaga et beyal@17')
+        superadmin.save()
+        self.stdout.write(self.style.SUCCESS('Super Admin mis à jour: Patrick Melaga (patrickjulienmelaga@gmail.com)'))
 
         # 3. Demo School 1: Collège Excellence Douala (Francophone)
         school1, created = School.objects.get_or_create(
