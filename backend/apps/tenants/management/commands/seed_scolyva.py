@@ -20,36 +20,40 @@ class Command(BaseCommand):
             {
                 'name': 'Starter',
                 'code': 'STARTER',
-                'price_xaf': 150000.00,
+                'price_xaf': 120000.00,  # 10,000 FCFA/mois (120,000 FCFA/an)
                 'max_students': 200,
-                'features_description': 'Gestion des élèves, classes, notes, bulletins PDF et présences.'
+                'features_description': '10,000 FCFA/mois (120,000 FCFA/an). Gestion des élèves, classes, notes, bulletins PDF et présences.'
             },
             {
                 'name': 'Pro',
                 'code': 'PRO',
-                'price_xaf': 350000.00,
+                'price_xaf': 300000.00,  # 25,000 FCFA/mois (300,000 FCFA/an)
                 'max_students': 600,
-                'features_description': 'Inclut Starter + Finances complètes, reçus, espace parents et SMS.'
+                'features_description': '25,000 FCFA/mois (300,000 FCFA/an). Inclut Starter + Finances complètes, reçus, espace parents et SMS.'
             },
             {
                 'name': 'Business',
                 'code': 'BUSINESS',
-                'price_xaf': 750000.00,
+                'price_xaf': 480000.00,  # 40,000 FCFA/mois (480,000 FCFA/an)
                 'max_students': 1500,
-                'features_description': 'Inclut Pro + CinetPay Mobile Money, recouvrement auto et bilinguisme.'
+                'features_description': '40,000 FCFA/mois (480,000 FCFA/an). Inclut Pro + CinetPay Mobile Money, recouvrement auto et bilinguisme.'
             },
             {
                 'name': 'Enterprise',
                 'code': 'ENTERPRISE',
-                'price_xaf': 1500000.00,
+                'price_xaf': 1200000.00,
                 'max_students': 5000,
-                'features_description': 'Groupes scolaires, support dédié 24/7 et hébergement sur mesure.'
+                'features_description': 'Sur mesure. Groupes scolaires, support dédié 24/7 et hébergement sur mesure.'
             },
         ]
 
         for p_data in plans_data:
             plan, created = SubscriptionPlan.objects.get_or_create(code=p_data['code'], defaults=p_data)
-            if created:
+            if not created:
+                plan.price_xaf = p_data['price_xaf']
+                plan.features_description = p_data['features_description']
+                plan.save()
+            else:
                 self.stdout.write(self.style.SUCCESS(f'Plan créé: {plan.name}'))
 
         # 2. Super Admin User (Patrick Melaga)

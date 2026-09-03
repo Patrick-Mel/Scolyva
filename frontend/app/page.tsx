@@ -8,13 +8,14 @@ import { apiRequest } from '@/lib/api';
 import {
   ShieldCheck, BookOpen, CreditCard, Users, CheckCircle2, ArrowRight,
   Sparkles, Building2, Phone, Mail, User, Eye, EyeOff, Lock, Laptop, Check,
-  Award, TrendingUp, DollarSign, LogIn, Globe
+  Award, TrendingUp, DollarSign, LogIn, Globe, CheckCircle, Zap, Star
 } from 'lucide-react';
 
 export default function LandingPage() {
   const [lang, setLang] = useState<Language>('fr');
   const [darkMode, setDarkMode] = useState(false); // Default to Light mode
-  const [activeFeatureTab, setActiveFeatureTab] = useState<'payments' | 'academics' | 'security'>('payments');
+  const [activeFeatureTab, setActiveFeatureTab] = useState<'payments' | 'academics' | 'security' | 'classroom'>('payments');
+  const [pricingBillingCycle, setPricingBillingCycle] = useState<'MONTHLY' | 'ANNUAL'>('MONTHLY');
 
   // Modals state
   const [showRegModal, setShowRegModal] = useState(false);
@@ -142,7 +143,6 @@ export default function LandingPage() {
         window.location.href = '/dashboard';
       }
     } catch (err: any) {
-      // Demo fallback redirect
       localStorage.setItem('scolyva_demo_slug', loginSlug);
       window.location.href = '/dashboard';
     } finally {
@@ -153,11 +153,12 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col font-sans selection:bg-sky-500 selection:text-white relative overflow-x-hidden">
       
-      {/* Decorative Background Orbs */}
-      <div className="absolute top-10 left-1/4 w-96 h-96 bg-sky-400/20 dark:bg-sky-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
-      <div className="absolute top-80 right-10 w-96 h-96 bg-indigo-400/20 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+      {/* Decorative Background Orbs & Gradients */}
+      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-sky-400/20 dark:bg-sky-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-[600px] right-10 w-[500px] h-[500px] bg-indigo-400/20 dark:bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-[1400px] left-10 w-[500px] h-[500px] bg-emerald-400/15 dark:bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
 
-      {/* PUBLIC NAVBAR: Clean SaaS Navigation (No roles in header, No Super Admin link) */}
+      {/* PUBLIC NAVBAR */}
       <Navbar
         isPublic={true}
         lang={lang}
@@ -168,7 +169,6 @@ export default function LandingPage() {
         onOpenRegisterModal={() => setShowRegModal(true)}
       />
 
-      {/* PUBLIC BANNER: Never renders on public vitrine page for unauthenticated visitors */}
       <ReadonlyBanner
         isPublic={true}
         status="TRIAL"
@@ -178,7 +178,7 @@ export default function LandingPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative pt-12 pb-24 px-4 sm:px-6 text-center overflow-hidden">
+      <section className="relative pt-12 pb-20 px-4 sm:px-6 text-center overflow-hidden">
         <div className="max-w-6xl mx-auto space-y-8 relative z-10">
           
           {/* Badge */}
@@ -187,8 +187,8 @@ export default function LandingPage() {
             <span>{t.badge_saas}</span>
           </div>
 
-          {/* Fully Translated Hero Headlines */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+          {/* Hero Headlines */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
             {t.hero_headline_1}{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-500 via-indigo-600 to-emerald-500">
               {t.hero_headline_highlight}
@@ -221,7 +221,7 @@ export default function LandingPage() {
 
           {/* High-End 3D Graphic Showcase */}
           <div className="pt-10 relative max-w-5xl mx-auto">
-            <div className="glass-card-hero p-3 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800/90">
+            <div className="glass-card-hero p-3.5 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800/90">
               <img
                 src="/hero_illustration.jpg"
                 alt="Scolyva 3D Dashboard Showcase"
@@ -229,7 +229,7 @@ export default function LandingPage() {
               />
               
               {/* Floating Live Callout Badges */}
-              <div className="absolute top-6 left-6 glass-card p-3 rounded-2xl flex items-center space-x-3 shadow-lg animate-float hidden md:flex">
+              <div className="absolute top-6 left-6 glass-card p-3 rounded-2xl flex items-center space-x-3 shadow-lg animate-float hidden md:flex border border-white/40">
                 <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold">
                   <Check className="w-5 h-5" />
                 </div>
@@ -239,7 +239,7 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <div className="absolute bottom-6 right-6 glass-card p-3 rounded-2xl flex items-center space-x-3 shadow-lg animate-float hidden md:flex" style={{ animationDelay: '2s' }}>
+              <div className="absolute bottom-6 right-6 glass-card p-3 rounded-2xl flex items-center space-x-3 shadow-lg animate-float hidden md:flex border border-white/40" style={{ animationDelay: '2s' }}>
                 <div className="w-9 h-9 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold">
                   <Award className="w-5 h-5" />
                 </div>
@@ -254,53 +254,65 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Interactive Feature Tabs Showcase */}
+      {/* Interactive Feature Tabs Showcase with 4 Rich 3D Illustrations */}
       <section id="features" className="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full relative z-10 scroll-mt-24">
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
             {t.feat_title}
           </h2>
-          <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
+          <p className="text-sm sm:text-base font-semibold text-slate-500 dark:text-slate-400">
             {t.feat_subtitle}
           </p>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-full mx-auto" />
+          <div className="w-24 h-1.5 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-full mx-auto" />
         </div>
 
         {/* Feature Tabs Buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           <button
             onClick={() => setActiveFeatureTab('payments')}
-            className={`flex items-center space-x-2 px-6 py-3 rounded-2xl text-sm font-extrabold transition shadow-sm ${
+            className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
               activeFeatureTab === 'payments'
                 ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-lg scale-105'
                 : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
             }`}
           >
-            <CreditCard className="w-4 h-4" />
+            <CreditCard className="w-4 h-4 text-emerald-400" />
             <span>Frais & Mobile Money</span>
           </button>
 
           <button
             onClick={() => setActiveFeatureTab('academics')}
-            className={`flex items-center space-x-2 px-6 py-3 rounded-2xl text-sm font-extrabold transition shadow-sm ${
+            className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
               activeFeatureTab === 'academics'
                 ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-lg scale-105'
                 : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
             }`}
           >
-            <BookOpen className="w-4 h-4" />
+            <BookOpen className="w-4 h-4 text-sky-400" />
             <span>Notes, Bulletins & Coefs</span>
           </button>
 
           <button
+            onClick={() => setActiveFeatureTab('classroom')}
+            className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
+              activeFeatureTab === 'classroom'
+                ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-lg scale-105'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
+            }`}
+          >
+            <Users className="w-4 h-4 text-indigo-400" />
+            <span>Cahier de classe & Présences</span>
+          </button>
+
+          <button
             onClick={() => setActiveFeatureTab('security')}
-            className={`flex items-center space-x-2 px-6 py-3 rounded-2xl text-sm font-extrabold transition shadow-sm ${
+            className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
               activeFeatureTab === 'security'
                 ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-lg scale-105'
                 : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
             }`}
           >
-            <ShieldCheck className="w-4 h-4" />
+            <ShieldCheck className="w-4 h-4 text-amber-400" />
             <span>Isolation Multi-Tenant</span>
           </button>
         </div>
@@ -310,7 +322,7 @@ export default function LandingPage() {
           {activeFeatureTab === 'payments' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-sky-500 bg-sky-50 dark:bg-sky-950 px-3 py-1 rounded-full border border-sky-200 dark:border-sky-800">
+                <span className="text-xs font-bold uppercase tracking-wider text-sky-500 bg-sky-50 dark:bg-sky-950 px-3.5 py-1.5 rounded-full border border-sky-200 dark:border-sky-800">
                   Passerelle CinetPay Intégrée
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -334,7 +346,7 @@ export default function LandingPage() {
                 <img
                   src="/payment_illustration.jpg"
                   alt="Paiement Mobile Money CinetPay"
-                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover"
+                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
                 />
               </div>
             </div>
@@ -343,7 +355,7 @@ export default function LandingPage() {
           {activeFeatureTab === 'academics' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-indigo-500 bg-indigo-50 dark:bg-indigo-950 px-3 py-1 rounded-full border border-indigo-200 dark:border-indigo-800">
+                <span className="text-xs font-bold uppercase tracking-wider text-indigo-500 bg-indigo-50 dark:bg-indigo-950 px-3.5 py-1.5 rounded-full border border-indigo-200 dark:border-indigo-800">
                   Moteur Pédagogique Avancé
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -359,15 +371,48 @@ export default function LandingPage() {
                   </div>
                   <div className="flex items-center space-x-2 text-indigo-600 dark:text-indigo-400">
                     <CheckCircle2 className="w-5 h-5" />
-                    <span>Feuilles d'appel et suivi de présence en temps réel</span>
+                    <span>Impression directe et envoi PDF aux parents</span>
                   </div>
                 </div>
               </div>
               <div>
                 <img
-                  src="/analytics_illustration.jpg"
-                  alt="Analytiques et Bulletins de Notes"
-                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover"
+                  src="/report_card_illustration.jpg"
+                  alt="Analytiques et Bulletins de Notes Bilingues"
+                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
+                />
+              </div>
+            </div>
+          )}
+
+          {activeFeatureTab === 'classroom' && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="space-y-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-500 bg-emerald-50 dark:bg-emerald-950 px-3.5 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800">
+                  Gestion de Classe Intelligente
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                  Cahier de Notes & Feuilles d'Appel en Temps Réel
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                  Les enseignants saisissent les notes par séquence et font l'appel en un clic depuis leur tablette ou smartphone. Les parents reçoivent une alerte immédiate en cas d'absence.
+                </p>
+                <div className="space-y-2 text-sm font-bold text-slate-700 dark:text-slate-300">
+                  <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span>Suivi quotidien de la discipline et des absences</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span>Accès sécurisé pour chaque professeur selon son emploi du temps</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <img
+                  src="/school_life_illustration.jpg"
+                  alt="Cahier de classe et vie scolaire 3D"
+                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
                 />
               </div>
             </div>
@@ -376,7 +421,7 @@ export default function LandingPage() {
           {activeFeatureTab === 'security' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-500 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-500 bg-amber-50 dark:bg-amber-950 px-3.5 py-1.5 rounded-full border border-amber-200 dark:border-amber-800">
                   Sécurité & Multitenancy
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -386,11 +431,11 @@ export default function LandingPage() {
                   {t.feat_3_desc}
                 </p>
                 <div className="space-y-2 text-sm font-bold text-slate-700 dark:text-slate-300">
-                  <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
+                  <div className="flex items-center space-x-2 text-amber-600 dark:text-amber-400">
                     <CheckCircle2 className="w-5 h-5" />
                     <span>Garantie de non-fuite de données entre établissements</span>
                   </div>
-                  <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
+                  <div className="flex items-center space-x-2 text-amber-600 dark:text-amber-400">
                     <CheckCircle2 className="w-5 h-5" />
                     <span>Stockage Cloudflare R2 avec URLs signées S3 temporaires</span>
                   </div>
@@ -400,7 +445,7 @@ export default function LandingPage() {
                 <img
                   src="/hero_illustration.jpg"
                   alt="Isolation Multi-Tenant"
-                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover"
+                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
                 />
               </div>
             </div>
@@ -408,84 +453,190 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Pricing Section with Monthly / Annual Toggle & Exact Requested Tariffs */}
       <section id="pricing" className="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full relative z-10 scroll-mt-24">
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">
-            Tarifs simples et transparents pour chaque établissement
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+            Tarifs simples, clairs et sans frais cachés
           </h2>
-          <p className="text-sm font-semibold text-slate-500 dark:text-slate-400">
-            Commencez par 14 jours d'essai gratuit. Choisissez le plan adapté au nombre de vos élèves.
+          <p className="text-sm sm:text-base font-semibold text-slate-500 dark:text-slate-400">
+            Profitez de 14 jours d'essai gratuit. Choisissez la formule adaptée au nombre de vos élèves.
           </p>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-full mx-auto" />
+
+          {/* Monthly / Annual Billing Toggle Switch */}
+          <div className="pt-4 flex items-center justify-center space-x-4">
+            <span className={`text-sm font-extrabold cursor-pointer transition ${pricingBillingCycle === 'MONTHLY' ? 'text-sky-600 dark:text-sky-400 scale-105' : 'text-slate-400'}`} onClick={() => setPricingBillingCycle('MONTHLY')}>
+              Paiement Mensuel
+            </span>
+
+            <button
+              onClick={() => setPricingBillingCycle(pricingBillingCycle === 'MONTHLY' ? 'ANNUAL' : 'MONTHLY')}
+              className="w-16 h-9 rounded-full bg-slate-200 dark:bg-slate-800 p-1 relative transition duration-300 focus:outline-none"
+            >
+              <div
+                className={`w-7 h-7 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 shadow-md transform transition duration-300 ${
+                  pricingBillingCycle === 'ANNUAL' ? 'translate-x-7' : 'translate-x-0'
+                }`}
+              />
+            </button>
+
+            <span className={`text-sm font-extrabold cursor-pointer transition flex items-center space-x-1.5 ${pricingBillingCycle === 'ANNUAL' ? 'text-sky-600 dark:text-sky-400 scale-105' : 'text-slate-400'}`} onClick={() => setPricingBillingCycle('ANNUAL')}>
+              <span>Paiement Annuel</span>
+              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] uppercase font-bold border border-emerald-500/30">
+                Économie 2 Mois
+              </span>
+            </span>
+          </div>
+
+          <div className="w-24 h-1.5 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-full mx-auto mt-4" />
         </div>
 
+        {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="glass-card p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800">
-            <div>
-              <span className="text-xs font-extrabold uppercase tracking-wider text-sky-500 bg-sky-50 dark:bg-sky-950 px-3 py-1 rounded-full">Starter</span>
-              <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-3">150,000 FCFA <span className="text-xs text-slate-500 font-semibold">/ an</span></div>
-              <p className="text-xs text-slate-500 mt-1">Jusqu'à 200 élèves</p>
+          
+          {/* Plan 1: STARTER (10,000 FCFA/Mois - 120,000 FCFA/An) */}
+          <div className="glass-card p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition">
+            <div className="space-y-4">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-sky-500 bg-sky-50 dark:bg-sky-950 px-3 py-1 rounded-full border border-sky-200 dark:border-sky-800">
+                Starter
+              </span>
+
+              <div>
+                <div className="text-3xl font-extrabold text-slate-900 dark:text-white">
+                  10,000 FCFA <span className="text-xs text-slate-500 font-semibold">/ mois</span>
+                </div>
+                <div className="text-xs font-bold text-sky-600 dark:text-sky-400 mt-1">
+                  Équivalent : 120,000 FCFA par an
+                </div>
+                <p className="text-xs text-slate-500 mt-2 font-medium">Pour écoles primaires & collèges jusqu'à 200 élèves</p>
+              </div>
+
+              <ul className="space-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300 pt-2">
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Gestion des élèves & classes</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Notes & Bulletins de séquence PDF</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Feuilles d'appel & Présences</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Support client par WhatsApp</span>
+                </li>
+              </ul>
             </div>
-            <ul className="space-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
-              <li className="flex items-center space-x-2">✓ <span>Gestion des élèves & classes</span></li>
-              <li className="flex items-center space-x-2">✓ <span>Notes & Bulletins de séquence</span></li>
-              <li className="flex items-center space-x-2">✓ <span>Feuilles d'appel & Présences</span></li>
-            </ul>
+
             <button
               onClick={() => setShowRegModal(true)}
-              className="w-full py-3.5 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-extrabold text-sm hover:opacity-90 transition"
+              className="w-full py-3.5 rounded-2xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-extrabold text-sm hover:opacity-90 transition shadow-md"
             >
-              Tester Gratuitement 14j
+              Démarrer l'essai Starter 14j
             </button>
           </div>
 
-          <div className="glass-card p-8 rounded-3xl space-y-6 border-2 border-sky-500 shadow-2xl relative">
-            <div className="absolute -top-3.5 right-6 px-3 py-1 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-extrabold text-[10px] uppercase tracking-wider shadow-md">
-              Populaire
+          {/* Plan 2: PRO (25,000 FCFA/Mois - 300,000 FCFA/An) */}
+          <div className="glass-card p-8 rounded-3xl space-y-6 border-2 border-sky-500 shadow-2xl relative flex flex-col justify-between transform md:-translate-y-2">
+            <div className="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-extrabold text-[10px] uppercase tracking-wider shadow-md">
+              Recommandé Écoles
             </div>
-            <div>
-              <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-500 bg-indigo-50 dark:bg-indigo-950 px-3 py-1 rounded-full">Pro</span>
-              <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-3">350,000 FCFA <span className="text-xs text-slate-500 font-semibold">/ an</span></div>
-              <p className="text-xs text-slate-500 mt-1">Jusqu'à 600 élèves</p>
+
+            <div className="space-y-4">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-indigo-500 bg-indigo-50 dark:bg-indigo-950 px-3 py-1 rounded-full border border-indigo-200 dark:border-indigo-800">
+                Pro
+              </span>
+
+              <div>
+                <div className="text-3xl font-extrabold text-slate-900 dark:text-white">
+                  25,000 FCFA <span className="text-xs text-slate-500 font-semibold">/ mois</span>
+                </div>
+                <div className="text-xs font-bold text-indigo-600 dark:text-indigo-400 mt-1">
+                  Équivalent : 300,000 FCFA par an
+                </div>
+                <p className="text-xs text-slate-500 mt-2 font-medium">Pour établissements moyens jusqu'à 600 élèves</p>
+              </div>
+
+              <ul className="space-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300 pt-2">
+                <li className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-bold">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Tout le plan Starter inclus</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Finances complètes & Suivi des impayés</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Espace Parents & Reçus officiels</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Relances automatiques par SMS</span>
+                </li>
+              </ul>
             </div>
-            <ul className="space-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
-              <li className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-bold">✓ <span>Tout le plan Starter</span></li>
-              <li className="flex items-center space-x-2">✓ <span>Finances & Recouvrement impayés</span></li>
-              <li className="flex items-center space-x-2">✓ <span>Espace Parents & Notifications</span></li>
-              <li className="flex items-center space-x-2">✓ <span>Reçus officiels instantanés</span></li>
-            </ul>
+
             <button
               onClick={() => setShowRegModal(true)}
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-extrabold text-sm hover:from-sky-600 hover:to-indigo-700 transition shadow-lg"
+              className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-extrabold text-sm hover:from-sky-600 hover:to-indigo-700 transition shadow-xl"
             >
               Démarrer l'essai Pro 14j
             </button>
           </div>
 
-          <div className="glass-card p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800">
-            <div>
-              <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-500 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full">Business</span>
-              <div className="text-3xl font-extrabold text-slate-900 dark:text-white mt-3">750,000 FCFA <span className="text-xs text-slate-500 font-semibold">/ an</span></div>
-              <p className="text-xs text-slate-500 mt-1">Jusqu'à 1500 élèves</p>
+          {/* Plan 3: BUSINESS (40,000 FCFA/Mois - 480,000 FCFA/An) */}
+          <div className="glass-card p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition">
+            <div className="space-y-4">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-500 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
+                Business
+              </span>
+
+              <div>
+                <div className="text-3xl font-extrabold text-slate-900 dark:text-white">
+                  40,000 FCFA <span className="text-xs text-slate-500 font-semibold">/ mois</span>
+                </div>
+                <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-1">
+                  Équivalent : 480,000 FCFA par an
+                </div>
+                <p className="text-xs text-slate-500 mt-2 font-medium">Grands lycées & collèges bilingues jusqu'à 1500 élèves</p>
+              </div>
+
+              <ul className="space-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300 pt-2">
+                <li className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-bold">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Tout le plan Pro inclus</span>
+                </li>
+                <li className="flex items-center space-x-2 font-bold text-sky-600 dark:text-sky-400">
+                  <CheckCircle2 className="w-4 h-4 text-sky-500 flex-shrink-0" />
+                  <span>CinetPay Mobile Money (OM / MoMo)</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Double système FR / EN Bilingue</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                  <span>Accès prioritaire VIP & Formations</span>
+                </li>
+              </ul>
             </div>
-            <ul className="space-y-3 text-sm font-semibold text-slate-600 dark:text-slate-300">
-              <li className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-bold">✓ <span>Tout le plan Pro</span></li>
-              <li className="flex items-center space-x-2">✓ <span>CinetPay Mobile Money (OM / MoMo)</span></li>
-              <li className="flex items-center space-x-2">✓ <span>Relances SMS automatiques</span></li>
-              <li className="flex items-center space-x-2">✓ <span>Double système FR / EN Bilingue</span></li>
-            </ul>
+
             <button
               onClick={() => setShowRegModal(true)}
-              className="w-full py-3.5 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-extrabold text-sm hover:opacity-90 transition"
+              className="w-full py-3.5 rounded-2xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-extrabold text-sm hover:opacity-90 transition shadow-md"
             >
-              Tester Gratuitement 14j
+              Démarrer l'essai Business 14j
             </button>
           </div>
+
         </div>
       </section>
 
-      {/* School Login Modal (Demande du sous-domaine de l'école + Identifiants) */}
+      {/* School Login Modal */}
       {showLoginModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="glass-card max-w-md w-full p-6 sm:p-8 relative rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl space-y-6">
