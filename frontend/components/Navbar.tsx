@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import ScolyvaLogo from './ScolyvaLogo';
 import { Sun, Moon, Globe, LogIn, Building2, ShieldCheck, GraduationCap, CreditCard, BookOpen, Users, User, ChevronDown } from 'lucide-react';
 import { Language, translations } from '@/lib/i18n';
 
@@ -44,31 +45,12 @@ export default function Navbar({
     <nav className="w-full glass-card sticky top-0 z-40 px-4 sm:px-6 py-3.5 border-b border-slate-200/80 dark:border-slate-800/80 transition-all duration-300 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
-        {/* Brand Logo */}
-        <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => window.location.href = '/'}>
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 flex items-center justify-center shadow-lg text-white font-extrabold text-xl transform group-hover:scale-105 transition duration-300">
-            S
-          </div>
-          <div>
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-indigo-600 to-emerald-500 dark:from-sky-400 dark:via-indigo-400 dark:to-emerald-400">
-                Scolyva
-              </span>
-              {!isPublic && (
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800">
-                  Espace École
-                </span>
-              )}
-            </div>
-            <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 -mt-0.5 hidden sm:block">
-              {t.hero_subtext}
-            </p>
-          </div>
+        {/* Official 3D Scolyva Logo Component */}
+        <div onClick={() => window.location.href = '/'}>
+          <ScolyvaLogo size="md" showSubtitle={isPublic} />
         </div>
 
-        {/* ------------------------------------------------------------------- */}
         {/* PUBLIC NAVBAR LINKS (scolyva.com) — Standard SaaS Public Navigation */}
-        {/* ------------------------------------------------------------------- */}
         {isPublic ? (
           <div className="hidden lg:flex items-center space-x-8 text-sm font-bold text-slate-700 dark:text-slate-200">
             <a href="#features" className="hover:text-sky-600 dark:hover:text-sky-400 transition">
@@ -82,9 +64,7 @@ export default function Navbar({
             </a>
           </div>
         ) : (
-          /* ----------------------------------------------------------------- */
           /* PRIVATE DASHBOARD ROLE SWITCHER (Only inside /dashboard workspace) */
-          /* ----------------------------------------------------------------- */
           <div className="hidden md:flex flex-wrap items-center justify-center gap-1.5 bg-slate-100/90 dark:bg-slate-900/90 p-1.5 rounded-2xl border border-slate-200/70 dark:border-slate-800/70 shadow-inner">
             {dashboardRoles.map((r) => {
               const Icon = r.icon;
