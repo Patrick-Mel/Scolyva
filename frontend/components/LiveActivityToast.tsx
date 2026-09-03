@@ -104,34 +104,34 @@ export default function LiveActivityToast({ lang = 'fr' }: LiveActivityToastProp
   const IconComponent = current.icon;
 
   return (
-    <div className="fixed bottom-6 left-6 z-40 max-w-sm w-full animate-float pointer-events-auto">
-      <div className="glass-card p-4 rounded-2xl border border-sky-500/30 shadow-2xl relative overflow-hidden flex items-start space-x-3.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
+    <div className="fixed bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-auto z-40 max-w-none sm:max-w-sm w-auto animate-float pointer-events-auto">
+      <div className="glass-card p-3 sm:p-4 rounded-2xl border border-sky-500/30 shadow-2xl relative overflow-hidden flex items-start space-x-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md">
         
         {/* Live Pulsing Dot */}
         <div className="absolute top-3 right-3 flex items-center space-x-2">
-          <span className="flex h-2.5 w-2.5 relative">
+          <span className="flex h-2 w-2 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
           <button
             onClick={() => setVisible(false)}
             className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition"
-            title="Dismiss"
+            title="Masquer"
           >
             <X className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        <div className={`p-2.5 rounded-xl border ${current.color} flex-shrink-0 mt-0.5`}>
-          <IconComponent className="w-5 h-5" />
+        <div className={`p-2 rounded-xl border ${current.color} flex-shrink-0 mt-0.5`}>
+          <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
         </div>
 
-        <div className="space-y-0.5 pr-6">
+        <div className="space-y-0.5 pr-5">
           <div className="flex items-center space-x-1.5">
-            <span className="text-xs font-extrabold text-slate-900 dark:text-white">{current.title}</span>
-            <span className="text-[10px] font-bold text-slate-400">• {current.time}</span>
+            <span className="text-[11px] sm:text-xs font-extrabold text-slate-900 dark:text-white">{current.title}</span>
+            <span className="text-[9px] sm:text-[10px] font-bold text-slate-400">• {current.time}</span>
           </div>
-          <p className="text-xs font-medium text-slate-600 dark:text-slate-300 leading-snug">
+          <p className="text-[11px] sm:text-xs font-medium text-slate-600 dark:text-slate-300 leading-snug">
             {current.desc}
           </p>
         </div>
