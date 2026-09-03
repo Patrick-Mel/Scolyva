@@ -52,22 +52,29 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(self.style.SUCCESS(f'Plan créé: {plan.name}'))
 
-        # 2. Super Admin User
+        # 2. Super Admin User (Patrick Melaga)
         superadmin, created = User.objects.get_or_create(
             email='admin@scolyva.com',
             defaults={
-                'first_name': 'Super',
-                'last_name': 'Admin',
+                'first_name': 'Patrick',
+                'last_name': 'Melaga',
                 'phone': '+237690000000',
                 'is_staff': True,
                 'is_superuser': True,
                 'is_superadmin': True
             }
         )
-        if created:
+        if not created:
+            superadmin.first_name = 'Patrick'
+            superadmin.last_name = 'Melaga'
+            superadmin.is_staff = True
+            superadmin.is_superuser = True
+            superadmin.is_superadmin = True
+            superadmin.save()
+        else:
             superadmin.set_password('SuperAdmin2026!')
             superadmin.save()
-            self.stdout.write(self.style.SUCCESS('Super Admin créé: admin@scolyva.com / SuperAdmin2026!'))
+        self.stdout.write(self.style.SUCCESS('Super Admin mis à jour: Patrick Melaga (admin@scolyva.com)'))
 
         # 3. Demo School 1: Collège Excellence Douala (Francophone)
         school1, created = School.objects.get_or_create(
