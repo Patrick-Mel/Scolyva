@@ -2,6 +2,7 @@ export type Language = 'fr' | 'en';
 
 export const translations = {
   fr: {
+    // Brand & Public Header
     badge_saas: "SaaS Multi-Tenant • Cameroun & Afrique",
     hero_headline_1: "Plateforme complète de gestion pour",
     hero_headline_highlight: "Écoles Publiques et Privées",
@@ -29,7 +30,7 @@ export const translations = {
 
     // Password Security & Registration
     reg_modal_title: "Inscrire mon Établissement Scolaire",
-    reg_modal_subtitle: "Bénéficiez immédiatement de 14 jours d'essai gratuit sans engagement.",
+    reg_modal_subtitle: "Bénéficiez immédiatement de 14 jours d'essai gratuit sans aucun engagement.",
     label_school_name: "Nom de l'établissement",
     label_city: "Ville",
     label_school_phone: "Téléphone de l'école",
@@ -49,6 +50,20 @@ export const translations = {
     upgrade_now: "Souscrire un Abonnement (Mobile Money / CinetPay)",
     readonly_badge: "Lecture Seule",
 
+    // Pricing & Plans
+    pricing_title: "Tarifs simples, clairs et sans frais cachés",
+    pricing_subtitle: "Profitez de 14 jours d'essai gratuit. Choisissez la formule adaptée au nombre de vos élèves.",
+    pricing_monthly: "Paiement Mensuel",
+    pricing_annual: "Paiement Annuel",
+    pricing_save_2mo: "Économie 2 Mois",
+    plan_starter_desc: "Pour écoles primaires & collèges jusqu'à 200 élèves",
+    plan_pro_desc: "Pour établissements moyens jusqu'à 600 élèves",
+    plan_business_desc: "Grands lycées & collèges bilingues jusqu'à 1500 élèves",
+    plan_equiv_annual: "Équivalent : {amount} par an",
+    btn_starter_trial: "Démarrer l'essai Starter 14j",
+    btn_pro_trial: "Démarrer l'essai Pro 14j",
+    btn_business_trial: "Démarrer l'essai Business 14j",
+
     // Roles
     role_superadmin: "Super Admin Plateforme",
     role_school_admin: "Directeur / Admin École",
@@ -57,7 +72,7 @@ export const translations = {
     role_parent: "Parent d'Élève",
     role_student: "Élève",
 
-    // Dashboard Titles & Subtitles
+    // Dashboard Workspace Titles & Subtitles
     dash_school_name: "Collège Excellence Douala",
     dash_title_admin: "Espace Administration Établissement",
     dash_title_superadmin: "Super Admin Platform Overview",
@@ -66,12 +81,27 @@ export const translations = {
     dash_title_parent: "Espace Parent (Suivi Enfants & Paiement)",
     dash_title_student: "Mon Dossier Scolaire & Assiduité",
 
-    // Stats
+    // Stats Cards
     stat_students: "Élèves Inscrits",
     stat_collected: "Frais Encaissés",
     stat_remaining: "Impayés / Reste à recouvrer",
     stat_rate: "Taux de Recouvrement",
     stat_avg: "Moyenne Générale Classe",
+
+    // Table Headers & Filters
+    th_student: "Élève & Matricule",
+    th_class: "Classe / Niveau",
+    th_due: "Frais Dûs",
+    th_paid: "Montant Payé",
+    th_balance: "Solde Restant",
+    th_status: "Statut Paiement",
+    th_actions: "Actions",
+    filter_all_classes: "Toutes les Classes",
+    filter_all_status: "Tous les Statuts",
+    status_paid: "À jour (Payé)",
+    status_partial: "En Retard (Partiel)",
+    status_unpaid: "Impayé (0 FCFA)",
+    search_placeholder: "Rechercher par nom, matricule ou téléphone...",
 
     // Actions & Buttons
     btn_save: "Enregistrer les Modifications",
@@ -82,6 +112,7 @@ export const translations = {
     btn_add_student: "Inscrire un Élève",
     btn_add_grade: "Saisir les Notes de Séquence",
     btn_close: "Fermer",
+    btn_print_receipt: "Imprimer le Reçu Officiel",
 
     // Educational Systems
     sys_francophone: "Système Francophone (6e → Terminale)",
@@ -90,6 +121,7 @@ export const translations = {
   },
 
   en: {
+    // Brand & Public Header
     badge_saas: "Multi-Tenant SaaS • Cameroon & Africa",
     hero_headline_1: "Complete management platform for",
     hero_headline_highlight: "Public and Private Schools",
@@ -137,6 +169,20 @@ export const translations = {
     upgrade_now: "Subscribe Now (Mobile Money / CinetPay)",
     readonly_badge: "Read Only",
 
+    // Pricing & Plans
+    pricing_title: "Simple, transparent pricing with no hidden fees",
+    pricing_subtitle: "Enjoy a 14-day free trial. Choose the plan tailored to your school size.",
+    pricing_monthly: "Monthly Billing",
+    pricing_annual: "Annual Billing",
+    pricing_save_2mo: "Save 2 Months",
+    plan_starter_desc: "For primary & secondary schools up to 200 students",
+    plan_pro_desc: "For medium establishments up to 600 students",
+    plan_business_desc: "Large bilingual high schools & colleges up to 1500 students",
+    plan_equiv_annual: "Equivalent: {amount} per year",
+    btn_starter_trial: "Start Starter 14d Trial",
+    btn_pro_trial: "Start Pro 14d Trial",
+    btn_business_trial: "Start Business 14d Trial",
+
     // Roles
     role_superadmin: "Platform Super Admin",
     role_school_admin: "School Director / Admin",
@@ -145,7 +191,7 @@ export const translations = {
     role_parent: "Parent",
     role_student: "Student",
 
-    // Dashboard Titles & Subtitles
+    // Dashboard Workspace Titles & Subtitles
     dash_school_name: "St. Patrick International College",
     dash_title_admin: "School Administration Portal",
     dash_title_superadmin: "Platform Super Admin Overview",
@@ -154,12 +200,27 @@ export const translations = {
     dash_title_parent: "Parent Portal (Child Overview & Payment)",
     dash_title_student: "My Academic Record & Attendance",
 
-    // Stats
+    // Stats Cards
     stat_students: "Enrolled Students",
     stat_collected: "Fees Collected",
     stat_remaining: "Outstanding Debt",
     stat_rate: "Collection Rate",
     stat_avg: "Class Average",
+
+    // Table Headers & Filters
+    th_student: "Student & ID",
+    th_class: "Class / Form",
+    th_due: "Total Due",
+    th_paid: "Amount Paid",
+    th_balance: "Remaining Debt",
+    th_status: "Payment Status",
+    th_actions: "Actions",
+    filter_all_classes: "All Forms & Classes",
+    filter_all_status: "All Payment Statuses",
+    status_paid: "Up to Date (Paid)",
+    status_partial: "Overdue (Partial)",
+    status_unpaid: "Unpaid (0 FCFA)",
+    search_placeholder: "Search by name, ID or phone...",
 
     // Actions & Buttons
     btn_save: "Save Changes",
@@ -170,6 +231,7 @@ export const translations = {
     btn_add_student: "Enroll Student",
     btn_add_grade: "Enter Sequence Grades",
     btn_close: "Close",
+    btn_print_receipt: "Print Official Receipt",
 
     // Educational Systems
     sys_francophone: "Francophone System (6th -> Terminale)",

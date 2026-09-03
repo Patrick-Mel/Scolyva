@@ -1041,7 +1041,7 @@ export default function LandingPage() {
       )}
 
       {/* Floating Live Activity Feed Toast */}
-      <LiveActivityToast />
+      <LiveActivityToast lang={lang} />
 
     </div>
   );
