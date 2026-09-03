@@ -7,6 +7,11 @@
 [![CinetPay](https://img.shields.io/badge/Payment-CinetPay%20Mobile%20Money-FF6600?style=for-the-badge)](https://cinetpay.com/)
 [![Cloudflare R2](https://img.shields.io/badge/Storage-Cloudflare%20R2-F38020?style=for-the-badge&logo=cloudflare)](https://www.cloudflare.com/products/r2/)
 
+> **URLs de Production Officielles** :
+> - 🌐 **Application Web (Vercel)** : [https://scolyva.vercel.app](https://scolyva.vercel.app)
+> - ⚙️ **Backend API REST (Render)** : [https://scolyva.onrender.com](https://scolyva.onrender.com)
+> - 🔒 **Interface Administration Django** : [https://scolyva.onrender.com/admin/](https://scolyva.onrender.com/admin/)
+
 > **Positionnement Produit** : *« L'école sait toujours qui doit quoi. Le parent sait toujours ce qu'il doit payer. »*
 
 **Scolyva** est une plateforme SaaS multi-tenant complète et moderne de gestion scolaire, spécialement conçue pour les établissements scolaires du Cameroun et d'Afrique francophone/anglophone. Elle orchestre la gestion des élèves, la scolarité, les notes, le calcul automatique des moyennes de séquence, les bulletins, la présence et le recouvrement des frais par Mobile Money (Orange Money, MTN MoMo).
