@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ReadonlyBanner from '@/components/ReadonlyBanner';
-import { translations, Language } from '../../lib/i18n';
-import { apiRequest } from '../../lib/api';
+import { translations, Language } from '@/lib/i18n';
+import { apiRequest } from '@/lib/api';
 import {
   Users, CreditCard, BookOpen, GraduationCap, ShieldCheck, CheckCircle2,
   AlertTriangle, DollarSign, Calendar, FileText, Plus, Search, ChevronRight,
