@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Sun, Moon, Globe, LogIn, Building2, ShieldCheck, GraduationCap, CreditCard, BookOpen, Users, User, ChevronDown } from 'lucide-react';
-import { Language, translations } from '@/lib/i18n';
+import { Language, translations } from '../lib/i18n';
 
 interface NavbarProps {
   isPublic?: boolean;
