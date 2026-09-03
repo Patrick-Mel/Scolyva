@@ -11,7 +11,8 @@ class FeeCategory(TenantModel):
         ordering = ['name']
 
     def __str__(self):
-        return f"{self.name} ({self.school.name})"
+        sch = self.school.name if self.school else 'Global'
+        return f"{self.name} ({sch})"
 
 
 class FeeStructure(TenantModel):
@@ -26,8 +27,9 @@ class FeeStructure(TenantModel):
         ordering = ['due_date']
 
     def __str__(self):
+        cat = self.fee_category.name if self.fee_category else "Frais"
         target = self.class_room.name if self.class_room else (self.level.name if self.level else "Toutes classes")
-        return f"{self.fee_category.name} - {target}: {self.amount:,.0f} FCFA"
+        return f"{cat} - {target}: {self.amount:,.0f} FCFA"
 
 
 class StudentBalance(TenantModel):
@@ -38,12 +40,16 @@ class StudentBalance(TenantModel):
     last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Solde {self.student.last_name} {self.student.first_name}: Dû={self.total_due:,.0f}, Payé={self.total_paid:,.0f}, Reste={self.balance_remaining:,.0f} FCFA"
+        st = f"{self.student.last_name} {self.student.first_name}" if self.student else "Élève"
+        return f"Solde {st}: Dû={self.total_due:,.0f}, Payé={self.total_paid:,.0f}, Reste={self.balance_remaining:,.0f} FCFA"
 
     def recalculate(self):
         # Calculate sum of fee structures applicable to student's class or level
         school = self.school
-        student_class = self.student.class_room
+        student_class = self.student.class_room if self.student else None
+        if not student_class:
+            return
+            
         student_level = student_class.level
 
         applicable_fees = FeeStructure.objects.filter(
@@ -102,4 +108,6 @@ class Payment(TenantModel):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"Reçu {self.receipt_number or self.transaction_ref} - {self.student.last_name}: {self.amount:,.0f} FCFA [{self.status}]"
+        st = f"{self.student.last_name} {self.student.first_name}" if self.student else "Élève"
+        ref = self.receipt_number or self.transaction_ref
+        return f"Reçu {ref} - {st}: {self.amount:,.0f} FCFA [{self.status}]"

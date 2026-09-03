@@ -14,7 +14,8 @@ class AcademicYear(TenantModel):
         ordering = ['-start_date']
 
     def __str__(self):
-        return f"{self.name} ({self.school.name})"
+        sch_name = self.school.name if self.school else 'Global'
+        return f"{self.name} ({sch_name})"
 
 
 class Level(TenantModel):
@@ -45,7 +46,8 @@ class ClassRoom(TenantModel):
         ordering = ['level__order', 'name']
 
     def __str__(self):
-        return f"{self.name} ({self.academic_year.name})"
+        yr = self.academic_year.name if self.academic_year else ''
+        return f"{self.name} ({yr})" if yr else self.name
 
 
 class Subject(TenantModel):
@@ -70,7 +72,9 @@ class ClassSubject(TenantModel):
         unique_together = ('class_room', 'subject')
 
     def __str__(self):
-        return f"{self.subject.name} - {self.class_room.name} (Coef: {self.coefficient})"
+        subj = self.subject.name if self.subject else "Matière"
+        cls = self.class_room.name if self.class_room else "Classe"
+        return f"{subj} - {cls} (Coef: {self.coefficient})"
 
 
 class Sequence(TenantModel):
@@ -84,7 +88,8 @@ class Sequence(TenantModel):
         ordering = ['order']
 
     def __str__(self):
-        return f"{self.name} - {self.academic_year.name}"
+        yr = self.academic_year.name if self.academic_year else ''
+        return f"{self.name} - {yr}" if yr else self.name
 
 
 class Student(TenantModel):
@@ -117,7 +122,8 @@ class Student(TenantModel):
         ordering = ['last_name', 'first_name']
 
     def __str__(self):
-        return f"{self.matricule} - {self.last_name} {self.first_name} ({self.class_room.name})"
+        cls = self.class_room.name if self.class_room else "Non attribué"
+        return f"{self.matricule} - {self.last_name} {self.first_name} ({cls})"
 
 
 class Grade(TenantModel):
@@ -135,7 +141,10 @@ class Grade(TenantModel):
         unique_together = ('student', 'class_subject', 'sequence')
 
     def __str__(self):
-        return f"{self.student.last_name} - {self.class_subject.subject.name} - {self.sequence.name}: {self.score}/{self.max_score}"
+        st = f"{self.student.last_name} {self.student.first_name}" if self.student else "Élève"
+        subj = self.class_subject.subject.name if (self.class_subject and self.class_subject.subject) else "Matière"
+        seq = self.sequence.name if self.sequence else "Séquence"
+        return f"{st} - {subj} - {seq}: {self.score}/{self.max_score}"
 
 
 class ReportCard(TenantModel):
@@ -155,4 +164,6 @@ class ReportCard(TenantModel):
         unique_together = ('student', 'sequence')
 
     def __str__(self):
-        return f"Bulletin {self.student.last_name} {self.student.first_name} - {self.sequence.name} (Moy: {self.overall_average:.2f}/20, Rang: {self.class_rank}/{self.total_students_in_class})"
+        st = f"{self.student.last_name} {self.student.first_name}" if self.student else "Élève"
+        seq = self.sequence.name if self.sequence else "Séquence"
+        return f"Bulletin {st} - {seq} (Moy: {self.overall_average:.2f}/20, Rang: {self.class_rank}/{self.total_students_in_class})"

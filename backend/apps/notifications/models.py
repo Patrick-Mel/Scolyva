@@ -20,4 +20,5 @@ class Notification(TenantModel):
         ordering = ['-sent_at']
 
     def __str__(self):
-        return f"Notif to {self.recipient.email}: {self.title}"
+        rcp = self.recipient.email if self.recipient else "Destinataire"
+        return f"Notif to {rcp}: {self.title}"

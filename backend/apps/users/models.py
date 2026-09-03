@@ -51,7 +51,7 @@ class User(AbstractUser):
 
     def __str__(self):
         full_name = f"{self.first_name} {self.last_name}".strip()
-        return full_name if full_name else self.email
+        return full_name if full_name else (self.email or "Utilisateur")
 
 
 class RoleChoices(models.TextChoices):
@@ -75,4 +75,6 @@ class Membership(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.user.email} - {self.get_role_display()} à {self.school.name}"
+        u_email = self.user.email if self.user else "User"
+        sch_name = self.school.name if self.school else "École"
+        return f"{u_email} - {self.get_role_display()} à {sch_name}"

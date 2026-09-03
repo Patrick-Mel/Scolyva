@@ -14,7 +14,8 @@ class AttendanceRecord(TenantModel):
         ordering = ['-date']
 
     def __str__(self):
-        return f"Appel {self.class_room.name} du {self.date}"
+        cls = self.class_room.name if self.class_room else "Classe"
+        return f"Appel {cls} du {self.date}"
 
 
 class Absence(TenantModel):
@@ -34,4 +35,6 @@ class Absence(TenantModel):
         unique_together = ('attendance_record', 'student')
 
     def __str__(self):
-        return f"{self.student.last_name} {self.student.first_name} - {self.get_status_display()} ({self.attendance_record.date})"
+        st = f"{self.student.last_name} {self.student.first_name}" if self.student else "Élève"
+        dt = self.attendance_record.date if self.attendance_record else ""
+        return f"{st} - {self.get_status_display()} ({dt})"
