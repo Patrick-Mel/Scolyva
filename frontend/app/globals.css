@@ -6,7 +6,7 @@
 
 :root {
   --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #edf2f7 50%, #e2e8f0 100%);
-  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-bg: rgba(255, 255, 255, 0.92);
   --card-border: rgba(226, 232, 240, 0.9);
   --text-main: #0f172a;
   --text-muted: #64748b;
@@ -15,7 +15,7 @@
 
 .dark {
   --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #0f172a 50%, #020617 100%);
-  --card-bg: rgba(15, 23, 42, 0.85);
+  --card-bg: rgba(15, 23, 42, 0.88);
   --card-border: rgba(30, 41, 59, 0.8);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
@@ -61,6 +61,15 @@ body {
   animation: floatAnimation 4s ease-in-out infinite;
 }
 
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+
+.scolyva-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
 @keyframes pulseGlow {
   0%, 100% { opacity: 0.8; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.02); }
@@ -68,4 +77,36 @@ body {
 
 .animate-pulse-glow {
   animation: pulseGlow 3s infinite ease-in-out;
+}
+
+@keyframes pulseBorder {
+  0%, 100% { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
+  50% { border-color: rgba(99, 102, 241, 0.8); box-shadow: 0 0 25px rgba(99, 102, 241, 0.3); }
+}
+
+.scolyva-glow-card {
+  animation: pulseBorder 4s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.scolyva-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Floating symbols background background effects */
+.floating-symbol {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.15;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.dark .floating-symbol {
+  opacity: 0.22;
 }

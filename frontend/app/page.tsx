@@ -3,12 +3,14 @@
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ReadonlyBanner from '@/components/ReadonlyBanner';
+import LiveActivityToast from '@/components/LiveActivityToast';
 import { translations, Language } from '@/lib/i18n';
 import { apiRequest } from '@/lib/api';
 import {
   ShieldCheck, BookOpen, CreditCard, Users, CheckCircle2, ArrowRight,
   Sparkles, Building2, Phone, Mail, User, Eye, EyeOff, Lock, Laptop, Check,
-  Award, TrendingUp, DollarSign, LogIn, Globe, CheckCircle, Zap, Star
+  Award, TrendingUp, DollarSign, LogIn, Globe, CheckCircle, Zap, Star,
+  GraduationCap, FileSpreadsheet, RefreshCw
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -20,6 +22,7 @@ export default function LandingPage() {
   // Modals state
   const [showRegModal, setShowRegModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showCinetPayDemoModal, setShowCinetPayDemoModal] = useState(false);
 
   // Registration password state
   const [showPassword, setShowPassword] = useState(false);
@@ -73,8 +76,8 @@ export default function LandingPage() {
       document.documentElement.classList.add('dark');
       localStorage.setItem('scolyva_theme', 'dark');
     } else {
+      setDarkMode(false);
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('scolyva_theme', 'light');
     }
   };
 
@@ -154,9 +157,28 @@ export default function LandingPage() {
     <div className="min-h-screen flex flex-col font-sans selection:bg-sky-500 selection:text-white relative overflow-x-hidden">
       
       {/* Decorative Background Orbs & Gradients */}
-      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-sky-400/20 dark:bg-sky-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute top-[600px] right-10 w-[500px] h-[500px] bg-indigo-400/20 dark:bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute top-[1400px] left-10 w-[500px] h-[500px] bg-emerald-400/15 dark:bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-10 left-1/4 w-[550px] h-[550px] bg-sky-400/20 dark:bg-sky-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-[600px] right-10 w-[550px] h-[550px] bg-indigo-400/20 dark:bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-[1400px] left-10 w-[550px] h-[550px] bg-emerald-400/15 dark:bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
+
+      {/* Dynamic Floating Scolyva Educational Symbols in Background */}
+      <div className="absolute top-36 left-12 scolyva-float-slow pointer-events-none hidden lg:block">
+        <div className="p-3.5 rounded-2xl bg-sky-500/10 border border-sky-500/30 backdrop-blur-md shadow-lg text-sky-500">
+          <GraduationCap className="w-8 h-8" />
+        </div>
+      </div>
+
+      <div className="absolute top-[480px] right-16 scolyva-float-slow pointer-events-none hidden lg:block" style={{ animationDelay: '2s' }}>
+        <div className="p-3.5 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 backdrop-blur-md shadow-lg text-indigo-500">
+          <Award className="w-8 h-8" />
+        </div>
+      </div>
+
+      <div className="absolute top-[900px] left-20 scolyva-float-slow pointer-events-none hidden lg:block" style={{ animationDelay: '4s' }}>
+        <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 backdrop-blur-md shadow-lg text-emerald-500">
+          <CreditCard className="w-8 h-8" />
+        </div>
+      </div>
 
       {/* PUBLIC NAVBAR */}
       <Navbar
@@ -182,9 +204,9 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto space-y-8 relative z-10">
           
           {/* Badge */}
-          <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-emerald-500/10 border border-sky-500/30 text-sky-700 dark:text-sky-300 text-xs font-extrabold tracking-wide uppercase shadow-sm">
-            <Sparkles className="w-4 h-4 text-sky-500" />
-            <span>{t.badge_saas}</span>
+          <div className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-emerald-500/10 border border-sky-500/30 text-sky-700 dark:text-sky-300 text-xs font-extrabold tracking-wide uppercase shadow-sm">
+            <Sparkles className="w-4 h-4 text-sky-500 animate-spin" style={{ animationDuration: '8s' }} />
+            <span>{t.badge_saas} • Édition Cameroun & Afrique</span>
           </div>
 
           {/* Hero Headlines */}
@@ -219,9 +241,32 @@ export default function LandingPage() {
             </button>
           </div>
 
+          {/* Key Metrics Counters Bar */}
+          <div className="pt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div className="glass-card p-4 rounded-2xl border border-sky-500/20 text-center">
+              <div className="text-2xl sm:text-3xl font-extrabold text-sky-600 dark:text-sky-400">+150 000</div>
+              <div className="text-xs font-extrabold text-slate-500 mt-1">Élèves Gérés</div>
+            </div>
+
+            <div className="glass-card p-4 rounded-2xl border border-indigo-500/20 text-center">
+              <div className="text-2xl sm:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">99.8%</div>
+              <div className="text-xs font-extrabold text-slate-500 mt-1">Recouvrement Frais</div>
+            </div>
+
+            <div className="glass-card p-4 rounded-2xl border border-emerald-500/20 text-center">
+              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">2 Systèmes</div>
+              <div className="text-xs font-extrabold text-slate-500 mt-1">Bilingue FR & EN</div>
+            </div>
+
+            <div className="glass-card p-4 rounded-2xl border border-amber-500/20 text-center">
+              <div className="text-2xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400">14 Jours</div>
+              <div className="text-xs font-extrabold text-slate-500 mt-1">Essai Gratuit Actif</div>
+            </div>
+          </div>
+
           {/* High-End 3D Graphic Showcase */}
           <div className="pt-10 relative max-w-5xl mx-auto">
-            <div className="glass-card-hero p-3.5 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800/90">
+            <div className="glass-card-hero p-3.5 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800/90 scolyva-glow-card">
               <img
                 src="/hero_illustration.jpg"
                 alt="Scolyva 3D Dashboard Showcase"
@@ -341,6 +386,14 @@ export default function LandingPage() {
                     <span>Relances automatiques par SMS & Rappels d'échéances</span>
                   </div>
                 </div>
+
+                <button
+                  onClick={() => setShowCinetPayDemoModal(true)}
+                  className="px-6 py-3 rounded-xl bg-emerald-500 text-white font-extrabold text-xs uppercase tracking-wider hover:bg-emerald-600 transition shadow-md flex items-center space-x-2 mt-4"
+                >
+                  <CreditCard className="w-4 h-4" />
+                  <span>Tester le Guichet CinetPay MoMo</span>
+                </button>
               </div>
               <div>
                 <img
@@ -636,6 +689,65 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* CinetPay Interactive Demo Modal */}
+      {showCinetPayDemoModal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="glass-card max-w-md w-full p-6 sm:p-8 relative rounded-3xl border border-emerald-500/30 shadow-2xl space-y-6">
+            <button
+              onClick={() => setShowCinetPayDemoModal(false)}
+              className="absolute top-6 right-6 text-slate-400 hover:text-slate-600 dark:hover:text-white font-bold text-xl"
+            >
+              ✕
+            </button>
+
+            <div className="text-center space-y-2">
+              <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 flex items-center justify-center mx-auto">
+                <CreditCard className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white">Guichet CinetPay MoMo</h3>
+              <p className="text-xs text-slate-500">Paiement direct sécurisé Orange Money / MTN MoMo</p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 space-y-3 text-xs font-semibold">
+              <div className="flex justify-between">
+                <span className="text-slate-500">Élève:</span>
+                <span className="font-bold text-slate-900 dark:text-white">K. Abena (Terminale C)</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Motif:</span>
+                <span className="font-bold text-slate-900 dark:text-white">Tranche 2 Scolarité 2025/2026</span>
+              </div>
+              <div className="flex justify-between text-emerald-600 dark:text-emerald-400 font-extrabold text-sm border-t border-slate-200 dark:border-slate-800 pt-2">
+                <span>Montant à régler:</span>
+                <span>25 000 FCFA</span>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <button
+                onClick={() => {
+                  alert("Simulation CinetPay : Paiement Orange Money de 25 000 FCFA validé avec succès ! Reçu N° REC-20260903-088 généré.");
+                  setShowCinetPayDemoModal(false);
+                }}
+                className="w-full py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg transition flex items-center justify-center space-x-2"
+              >
+                <span>Payer avec Orange Money 🟠</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  alert("Simulation CinetPay : Paiement MTN MoMo de 25 000 FCFA validé avec succès ! Reçu N° REC-20260903-089 généré.");
+                  setShowCinetPayDemoModal(false);
+                }}
+                className="w-full py-3.5 rounded-xl bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-extrabold text-xs uppercase tracking-wider shadow-lg transition flex items-center justify-center space-x-2"
+              >
+                <span>Payer avec MTN Mobile Money 🟡</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* School Login Modal */}
       {showLoginModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
@@ -717,7 +829,7 @@ export default function LandingPage() {
         </div>
       )}
 
-      {/* Registration Modal with Password Visibility & Confirmation Validation */}
+      {/* Registration Modal */}
       {showRegModal && (
         <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
           <div className="glass-card max-w-2xl w-full p-6 sm:p-8 relative rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl">
@@ -927,6 +1039,10 @@ export default function LandingPage() {
           </div>
         </div>
       )}
+
+      {/* Floating Live Activity Feed Toast */}
+      <LiveActivityToast />
+
     </div>
   );
 }
