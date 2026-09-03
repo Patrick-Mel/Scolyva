@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import SMSNotification
+from .models import Notification
 
-@admin.register(SMSNotification)
-class SMSNotificationAdmin(admin.ModelAdmin):
-    list_display = ('recipient_phone', 'school', 'message_type', 'status', 'sent_at')
-    list_filter = ('message_type', 'status', 'school')
-    search_fields = ('recipient_phone', 'message_text')
+@admin.register(Notification)
+class NotificationAdmin(admin.ModelAdmin):
+    list_display = ('recipient', 'title', 'channel', 'is_read', 'school', 'sent_at')
+    list_filter = ('channel', 'is_read', 'school')
+    search_fields = ('recipient__email', 'title', 'message')

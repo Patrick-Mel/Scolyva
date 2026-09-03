@@ -17,6 +17,6 @@ class SubscriptionPlanAdmin(admin.ModelAdmin):
 
 @admin.register(SchoolSubscription)
 class SchoolSubscriptionAdmin(admin.ModelAdmin):
-    list_display = ('school', 'plan', 'starts_at', 'ends_at', 'is_active', 'auto_renew')
-    list_filter = ('is_active', 'auto_renew', 'plan')
+    list_display = ('school', 'plan', 'starts_at', 'ends_at')
+    list_filter = ('plan',)
     search_fields = ('school__name', 'plan__name')

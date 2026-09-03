@@ -36,8 +36,8 @@ class SequenceAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('matricule', 'first_name', 'last_name', 'school', 'class_room', 'gender', 'is_active')
-    list_filter = ('class_room', 'gender', 'is_active', 'school')
+    list_display = ('matricule', 'first_name', 'last_name', 'school', 'class_room', 'gender')
+    list_filter = ('class_room', 'gender', 'school')
     search_fields = ('matricule', 'first_name', 'last_name', 'parent_phone')
 
 @admin.register(Grade)

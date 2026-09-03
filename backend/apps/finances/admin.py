@@ -13,8 +13,8 @@ class FeeStructureAdmin(admin.ModelAdmin):
 
 @admin.register(StudentBalance)
 class StudentBalanceAdmin(admin.ModelAdmin):
-    list_display = ('student', 'school', 'total_due', 'total_paid', 'balance_remaining', 'is_up_to_date')
-    list_filter = ('is_up_to_date', 'school')
+    list_display = ('student', 'school', 'total_due', 'total_paid', 'balance_remaining')
+    list_filter = ('school',)
     search_fields = ('student__first_name', 'student__last_name', 'student__matricule')
 
 @admin.register(Payment)
