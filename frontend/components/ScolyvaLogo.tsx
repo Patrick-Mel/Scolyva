@@ -2,10 +2,11 @@
 
 interface ScolyvaLogoProps {
   size?: 'sm' | 'md' | 'lg';
+  subtitle?: string;
   showSubtitle?: boolean;
 }
 
-export default function ScolyvaLogo({ size = 'md', showSubtitle = true }: ScolyvaLogoProps) {
+export default function ScolyvaLogo({ size = 'md', subtitle = 'Gestion Scolaire', showSubtitle = true }: ScolyvaLogoProps) {
   const dimensions = {
     sm: { img: 'w-8 h-8', text: 'text-xl', badge: 'text-[9px]' },
     md: { img: 'w-10 h-10', text: 'text-2xl', badge: 'text-[10px]' },
@@ -30,7 +31,7 @@ export default function ScolyvaLogo({ size = 'md', showSubtitle = true }: Scolyv
           </span>
           {showSubtitle && (
             <span className={`${dimensions.badge} uppercase font-extrabold tracking-wider px-2 py-0.5 rounded-full bg-gradient-to-r from-sky-500/10 to-emerald-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/30`}>
-              EdTech OS
+              {subtitle}
             </span>
           )}
         </div>
