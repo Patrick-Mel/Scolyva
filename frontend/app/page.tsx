@@ -268,14 +268,106 @@ export default function LandingPage() {
 
           </div>
 
-          {/* SECTION 3: Master 3D Graphic Showcase */}
+          {/* SECTION 3: Master Vector UI Dashboard Showcase */}
           <div className="pt-10 relative max-w-5xl mx-auto">
-            <div className="glass-card-hero p-3.5 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800/90 scolyva-glow-card">
-              <img
-                src="/hero_illustration.jpg"
-                alt="Plateforme Officielle Scolyva - Master 3D Showcase"
-                className="w-full h-auto rounded-2xl shadow-lg object-cover transform hover:scale-[1.01] transition duration-500"
-              />
+            <div className="glass-card-hero p-6 sm:p-8 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800/90 scolyva-glow-card space-y-6">
+              
+              {/* Dashboard Top Header Bar */}
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200/80 dark:border-slate-800/80">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#00a8ff] to-indigo-600 flex items-center justify-center text-white font-extrabold shadow-md">
+                    S
+                  </div>
+                  <div>
+                    <div className="text-base font-extrabold text-slate-900 dark:text-white flex items-center space-x-2">
+                      <span>Collège Excellence • Douala</span>
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] uppercase font-bold border border-emerald-500/30">
+                        En Ligne • Multi-Tenant
+                      </span>
+                    </div>
+                    <div className="text-xs font-semibold text-slate-500">Tableau de bord Administration Scolyva OS</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-2 text-xs font-bold text-slate-600 dark:text-slate-300">
+                  <span className="px-3 py-1.5 rounded-xl bg-sky-50 dark:bg-sky-950 text-[#00a8ff] border border-sky-200 dark:border-sky-800">
+                    Année Scolaire 2026-2027
+                  </span>
+                </div>
+              </div>
+
+              {/* 4 Live Stat Cards */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-1">
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Effectif Total</div>
+                  <div className="text-2xl font-extrabold text-slate-900 dark:text-white">1,240</div>
+                  <div className="text-[11px] font-bold text-emerald-500 flex items-center space-x-1">
+                    <CheckCircle className="w-3 h-3" />
+                    <span>Inscrits & Validés</span>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-1">
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Taux Présence QR</div>
+                  <div className="text-2xl font-extrabold text-[#00a8ff]">98.4%</div>
+                  <div className="text-[11px] font-bold text-sky-500 flex items-center space-x-1">
+                    <Zap className="w-3 h-3" />
+                    <span>Scans Automatiques</span>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-1">
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Moyenne Générale</div>
+                  <div className="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">14.8/20</div>
+                  <div className="text-[11px] font-bold text-indigo-500 flex items-center space-x-1">
+                    <Award className="w-3 h-3" />
+                    <span>Trimestre 1 Validé</span>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-1">
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Mobile Money CinetPay</div>
+                  <div className="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400">94.2%</div>
+                  <div className="text-[11px] font-bold text-emerald-500 flex items-center space-x-1">
+                    <CreditCard className="w-3 h-3" />
+                    <span>Recouvrement Réussi</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Live Modules Grid Preview */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-3">
+                <div className="flex items-center justify-between text-xs font-extrabold text-slate-800 dark:text-slate-200">
+                  <span>MODULES INTELLECTUELS ACTIFS — SESSIONS ET EXAMENS</span>
+                  <span className="text-[#00a8ff]">Propulsé par l'IA Scolyva</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center space-x-3">
+                    <Sparkles className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                    <div>
+                      <div className="font-extrabold text-slate-900 dark:text-white">Emplois du temps IA</div>
+                      <div className="text-[10px] text-slate-400">Solveur CSP • 0 Conflit</div>
+                    </div>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center space-x-3">
+                    <Lock className="w-4 h-4 text-indigo-500 flex-shrink-0" />
+                    <div>
+                      <div className="font-extrabold text-slate-900 dark:text-white">Examens Sécurisés</div>
+                      <div className="text-[10px] text-slate-400">Anti-triche • Auto-save</div>
+                    </div>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center space-x-3">
+                    <CreditCard className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                    <div>
+                      <div className="font-extrabold text-slate-900 dark:text-white">Frais Mobile Money</div>
+                      <div className="text-[10px] text-slate-400">CinetPay • OM & MoMo</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -371,11 +463,41 @@ export default function LandingPage() {
                 </div>
               </div>
               <div>
-                <img
-                  src="/hero_illustration.jpg"
-                  alt="Emplois du temps automatisés par IA"
-                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
-                />
+                <div className="p-6 rounded-2xl bg-slate-900 text-white border border-slate-800 space-y-4 shadow-xl">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div className="flex items-center space-x-2">
+                      <Sparkles className="w-4 h-4 text-amber-400" />
+                      <span className="font-extrabold text-sm">Générateur Emploi du Temps IA</span>
+                    </div>
+                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">0 Conflit Détecté</span>
+                  </div>
+                  <div className="grid grid-cols-5 gap-2 text-[11px] font-bold text-center">
+                    <div className="p-2 rounded-xl bg-sky-950/60 border border-sky-800 text-sky-300">
+                      <div>Lundi</div>
+                      <div className="text-[9px] text-slate-400 font-normal mt-1">Maths • 07h30</div>
+                    </div>
+                    <div className="p-2 rounded-xl bg-indigo-950/60 border border-indigo-800 text-indigo-300">
+                      <div>Mardi</div>
+                      <div className="text-[9px] text-slate-400 font-normal mt-1">Physique • 09h30</div>
+                    </div>
+                    <div className="p-2 rounded-xl bg-emerald-950/60 border border-emerald-800 text-emerald-300">
+                      <div>Mercredi</div>
+                      <div className="text-[9px] text-slate-400 font-normal mt-1">SVT • 08h00</div>
+                    </div>
+                    <div className="p-2 rounded-xl bg-amber-950/60 border border-amber-800 text-amber-300">
+                      <div>Jeudi</div>
+                      <div className="text-[9px] text-slate-400 font-normal mt-1">Info • 10h30</div>
+                    </div>
+                    <div className="p-2 rounded-xl bg-purple-950/60 border border-purple-800 text-purple-300">
+                      <div>Vendredi</div>
+                      <div className="text-[9px] text-slate-400 font-normal mt-1">Anglais • 08h00</div>
+                    </div>
+                  </div>
+                  <div className="text-[11px] text-slate-400 flex items-center justify-between pt-1">
+                    <span>Solveur CSP : 100% Salles & Progr. optimisés</span>
+                    <span className="text-emerald-400 font-bold">✓ Validé</span>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -404,11 +526,32 @@ export default function LandingPage() {
                 </div>
               </div>
               <div>
-                <img
-                  src="/report_card_illustration.jpg"
-                  alt="Examens en ligne sécurisés"
-                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
-                />
+                <div className="p-6 rounded-2xl bg-slate-900 text-white border border-slate-800 space-y-4 shadow-xl">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div className="flex items-center space-x-2">
+                      <Lock className="w-4 h-4 text-indigo-400" />
+                      <span className="font-extrabold text-sm">Session d'Examen Sécurisée IA</span>
+                    </div>
+                    <span className="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 text-[10px] font-bold">Anti-Triche Actif</span>
+                  </div>
+                  <div className="space-y-2 text-xs">
+                    <div className="flex justify-between text-slate-300 font-semibold">
+                      <span>Épreuve : Mathématiques Tle C</span>
+                      <span className="text-amber-400 font-mono">01 : 45 : 20</span>
+                    </div>
+                    <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+                      <div>
+                        <div className="font-bold text-slate-200">Rapport de Fiabilité Élève</div>
+                        <div className="text-[10px] text-slate-400">Score de confiance d'intégrité</div>
+                      </div>
+                      <span className="text-lg font-black text-emerald-400">100 %</span>
+                    </div>
+                  </div>
+                  <div className="text-[11px] text-slate-400 flex items-center justify-between pt-1">
+                    <span>Sauvegarde automatique toutes les 15s</span>
+                    <span className="text-sky-400 font-bold">✓ Synchronisé Cloud</span>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -437,11 +580,33 @@ export default function LandingPage() {
                 </div>
               </div>
               <div>
-                <img
-                  src="/payment_illustration.jpg"
-                  alt="Paiement Mobile Money CinetPay"
-                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
-                />
+                <div className="p-6 rounded-2xl bg-slate-900 text-white border border-slate-800 space-y-4 shadow-xl">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div className="flex items-center space-x-2">
+                      <CreditCard className="w-4 h-4 text-emerald-400" />
+                      <span className="font-extrabold text-sm">Reçu de Paiement CinetPay</span>
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">PAYÉ ✓</span>
+                  </div>
+                  <div className="space-y-2 text-xs">
+                    <div className="flex justify-between text-slate-300">
+                      <span className="text-slate-400">Élève :</span>
+                      <span className="font-bold text-white">Mbida Jean-Marc (Tle C)</span>
+                    </div>
+                    <div className="flex justify-between text-slate-300">
+                      <span className="text-slate-400">Canal de paiement :</span>
+                      <span className="font-bold text-amber-400">Orange Money / MTN MoMo</span>
+                    </div>
+                    <div className="flex justify-between text-slate-300">
+                      <span className="text-slate-400">Montant réglé :</span>
+                      <span className="font-extrabold text-emerald-400 text-base">45,000 FCFA</span>
+                    </div>
+                  </div>
+                  <div className="text-[11px] text-slate-400 border-t border-slate-800/80 pt-2 flex items-center justify-between">
+                    <span>Rapprochement comptable instantané</span>
+                    <span className="text-emerald-400 font-bold">Reçu PDF généré</span>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -470,11 +635,33 @@ export default function LandingPage() {
                 </div>
               </div>
               <div>
-                <img
-                  src="/school_life_illustration.jpg"
-                  alt="Analytiques et Bulletins de Notes Bilingues"
-                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
-                />
+                <div className="p-6 rounded-2xl bg-slate-900 text-white border border-slate-800 space-y-4 shadow-xl">
+                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div className="flex items-center space-x-2">
+                      <BookOpen className="w-4 h-4 text-sky-400" />
+                      <span className="font-extrabold text-sm">Bulletin Trimestriel Bilingue</span>
+                    </div>
+                    <span className="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 text-[10px] font-bold">Trimestre 1</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                    <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                      <div className="text-[10px] text-slate-400">Moyenne</div>
+                      <div className="text-base font-black text-emerald-400">16.50 / 20</div>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                      <div className="text-[10px] text-slate-400">Rang</div>
+                      <div className="text-base font-black text-sky-400">1er / 45</div>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
+                      <div className="text-[10px] text-slate-400">Mention</div>
+                      <div className="text-xs font-bold text-amber-400 mt-1">Très Bien</div>
+                    </div>
+                  </div>
+                  <div className="text-[11px] text-slate-400 flex items-center justify-between pt-1">
+                    <span>Calcul automatique FR & EN</span>
+                    <span className="text-sky-400 font-bold">Export PDF Prêt</span>
+                  </div>
+                </div>
               </div>
             </div>
           )}

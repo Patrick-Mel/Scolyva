@@ -15,13 +15,9 @@ export default function ScolyvaLogo({ size = 'md', subtitle = '', showSubtitle =
 
   return (
     <div className="flex items-center space-x-2 sm:space-x-3 cursor-pointer group">
-      {/* Official 3D Glassmorphic Logo Image Emblem */}
-      <div className={`${dimensions.img} rounded-xl sm:rounded-2xl overflow-hidden shadow-md border border-sky-400/30 group-hover:scale-105 transition duration-300 relative bg-white dark:bg-slate-900 flex items-center justify-center p-0.5 flex-shrink-0`}>
-        <img
-          src="/scolyva_logo.jpg"
-          alt="Logo Officiel Scolyva"
-          className="w-full h-full object-cover rounded-lg sm:rounded-xl"
-        />
+      {/* Vector Emblem Icon */}
+      <div className={`${dimensions.img} rounded-xl sm:rounded-2xl shadow-md border border-sky-400/30 group-hover:scale-105 transition duration-300 relative bg-gradient-to-br from-[#00a8ff] via-indigo-600 to-emerald-500 flex items-center justify-center text-white flex-shrink-0`}>
+        <span className="font-black text-sm sm:text-base tracking-tighter">S</span>
       </div>
 
       <div>
