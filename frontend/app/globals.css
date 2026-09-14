@@ -5,16 +5,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #edf2f7 50%, #e2e8f0 100%);
-  --card-bg: rgba(255, 255, 255, 0.92);
+  --bg-gradient: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+  --card-bg: rgba(255, 255, 255, 0.95);
   --card-border: rgba(226, 232, 240, 0.9);
   --text-main: #0f172a;
   --text-muted: #64748b;
-  --accent: #0284c7;
+  --accent: #00a8ff;
 }
 
 .dark {
-  --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #0f172a 50%, #020617 100%);
+  --bg-gradient: linear-gradient(180deg, #0b0f19 0%, #0f172a 50%, #020617 100%);
   --card-bg: rgba(15, 23, 42, 0.88);
   --card-border: rgba(30, 41, 59, 0.8);
   --text-main: #f8fafc;
@@ -35,21 +35,41 @@ body {
   backdrop-filter: blur(16px);
   border: 1px solid var(--card-border);
   border-radius: 1.25rem;
-  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.04);
 }
 
 .glass-card-hero {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(241, 245, 249, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: 1.5rem;
-  box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.15);
+  box-shadow: 0 20px 40px -15px rgba(0, 168, 255, 0.12);
 }
 
 .dark .glass-card-hero {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.95) 100%);
   border: 1px solid rgba(30, 41, 59, 0.9);
   box-shadow: 0 20px 40px -15px rgba(56, 189, 248, 0.15);
+}
+
+/* Eduvate Radial Hero Glow Effect */
+.eduvate-hero-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(0, 168, 255, 0.15) 0%, rgba(56, 189, 248, 0.08) 35%, transparent 70%);
+}
+
+.dark .eduvate-hero-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(0, 168, 255, 0.22) 0%, rgba(56, 189, 248, 0.1) 40%, transparent 75%);
+}
+
+/* Eduvate Cyan Glow Button */
+.btn-eduvate-primary {
+  background: linear-gradient(90deg, #00a8ff 0%, #008cdb 100%);
+  box-shadow: 0 10px 25px -5px rgba(0, 168, 255, 0.4);
+}
+
+.btn-eduvate-primary:hover {
+  background: linear-gradient(90deg, #0096e6 0%, #007cc2 100%);
+  box-shadow: 0 14px 30px -5px rgba(0, 168, 255, 0.5);
 }
 
 @keyframes floatAnimation {
@@ -80,33 +100,10 @@ body {
 }
 
 @keyframes pulseBorder {
-  0%, 100% { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
+  0%, 100% { border-color: rgba(0, 168, 255, 0.4); box-shadow: 0 0 15px rgba(0, 168, 255, 0.15); }
   50% { border-color: rgba(99, 102, 241, 0.8); box-shadow: 0 0 25px rgba(99, 102, 241, 0.3); }
 }
 
 .scolyva-glow-card {
   animation: pulseBorder 4s infinite ease-in-out;
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.scolyva-shimmer {
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-  background-size: 200% 100%;
-  animation: shimmer 3s infinite;
-}
-
-/* Floating symbols background background effects */
-.floating-symbol {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.15;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-}
-
-.dark .floating-symbol {
-  opacity: 0.22;
 }

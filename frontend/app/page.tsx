@@ -10,7 +10,7 @@ import {
   ShieldCheck, BookOpen, CreditCard, Users, CheckCircle2, ArrowRight,
   Sparkles, Building2, Phone, Mail, User, Eye, EyeOff, Lock, Laptop, Check,
   Award, TrendingUp, DollarSign, LogIn, Globe, CheckCircle, Zap, Star,
-  GraduationCap, FileSpreadsheet, RefreshCw
+  GraduationCap, FileSpreadsheet, RefreshCw, BarChart2, Shield, Brain
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -153,31 +153,10 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans selection:bg-sky-500 selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen flex flex-col font-sans selection:bg-[#00a8ff] selection:text-white relative overflow-x-hidden bg-white dark:bg-slate-950">
       
-      {/* Decorative Background Orbs & Gradients */}
-      <div className="absolute top-10 left-1/4 w-[550px] h-[550px] bg-sky-400/20 dark:bg-sky-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute top-[600px] right-10 w-[550px] h-[550px] bg-indigo-400/20 dark:bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute top-[1400px] left-10 w-[550px] h-[550px] bg-emerald-400/15 dark:bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
-
-      {/* Dynamic Floating Scolyva Educational Symbols in Background */}
-      <div className="absolute top-36 left-12 scolyva-float-slow pointer-events-none hidden lg:block">
-        <div className="p-3.5 rounded-2xl bg-sky-500/10 border border-sky-500/30 backdrop-blur-md shadow-lg text-sky-500">
-          <GraduationCap className="w-8 h-8" />
-        </div>
-      </div>
-
-      <div className="absolute top-[480px] right-16 scolyva-float-slow pointer-events-none hidden lg:block" style={{ animationDelay: '2s' }}>
-        <div className="p-3.5 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 backdrop-blur-md shadow-lg text-indigo-500">
-          <Award className="w-8 h-8" />
-        </div>
-      </div>
-
-      <div className="absolute top-[900px] left-20 scolyva-float-slow pointer-events-none hidden lg:block" style={{ animationDelay: '4s' }}>
-        <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 backdrop-blur-md shadow-lg text-emerald-500">
-          <CreditCard className="w-8 h-8" />
-        </div>
-      </div>
+      {/* Radial Soft Blue Hero Glow Container */}
+      <div className="absolute top-0 left-0 right-0 h-[650px] eduvate-hero-glow pointer-events-none" />
 
       {/* PUBLIC NAVBAR */}
       <Navbar
@@ -198,72 +177,93 @@ export default function LandingPage() {
         onSubscribeClick={() => {}}
       />
 
-      {/* Hero Section */}
-      <section className="relative pt-12 pb-20 px-4 sm:px-6 text-center overflow-hidden">
-        <div className="max-w-6xl mx-auto space-y-8 relative z-10">
+      {/* Hero Section matching EXACT Eduvate Maquette Layout */}
+      <section className="relative pt-12 sm:pt-16 pb-20 px-4 sm:px-6 text-center overflow-hidden">
+        <div className="max-w-4xl mx-auto space-y-8 relative z-10">
           
-          {/* Badge */}
-          <div className="inline-flex items-center space-x-2.5 px-4 py-2 rounded-full bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-emerald-500/10 border border-sky-500/30 text-sky-700 dark:text-sky-300 text-xs font-extrabold tracking-wide uppercase shadow-sm">
-            <Sparkles className="w-4 h-4 text-sky-500 animate-spin" style={{ animationDuration: '8s' }} />
-            <span>{t.badge_saas} • Édition Cameroun & Afrique</span>
+          {/* Centered Pill Badge */}
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-sky-50 dark:bg-sky-950/80 border border-sky-200 dark:border-sky-800 text-[#00a8ff] dark:text-sky-300 text-xs font-extrabold tracking-wide shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-[#00a8ff]" />
+            <span>Plateforme IA de gestion scolaire #1 • Cameroun & Afrique</span>
           </div>
 
-          {/* Hero Headlines */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-            {t.hero_headline_1}{' '}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-500 via-indigo-600 to-emerald-500">
-              {t.hero_headline_highlight}
+          {/* Giant 2-Line Headline matching exact screenshot */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+            La gestion scolaire <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00a8ff] via-[#0096e6] to-[#007cc2] drop-shadow-sm">
+              réinventée par l'IA
             </span>
           </h1>
 
-          {/* Subtext */}
-          <p className="text-base sm:text-xl font-semibold text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            « {t.hero_subtext} »
+          {/* Centered Subtitle Paragraph matching exact screenshot */}
+          <p className="text-base sm:text-lg font-medium text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Gérez étudiants, professeurs, emplois du temps, finances, examens et documents — le tout automatisé par l'intelligence artificielle.
           </p>
 
-          {/* Action Buttons */}
+          {/* Dual Pill CTA Buttons matching exact screenshot */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <button
               onClick={() => setShowRegModal(true)}
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-sky-500 via-indigo-600 to-emerald-500 hover:from-sky-600 hover:to-indigo-700 text-white font-extrabold text-base sm:text-lg shadow-xl hover:shadow-2xl transition transform hover:-translate-y-0.5 flex items-center justify-center space-x-3"
+              className="w-full sm:w-auto btn-eduvate-primary text-white font-extrabold text-sm sm:text-base px-8 py-4 rounded-full flex items-center justify-center space-x-2 shadow-xl hover:scale-[1.02] transition"
             >
-              <span>{t.hero_btn_register}</span>
-              <ArrowRight className="w-5 h-5" />
+              <span>Commencer maintenant</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
 
             <button
               onClick={() => window.location.href = '/dashboard?demo=true'}
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-800 dark:text-slate-100 font-extrabold text-base sm:text-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition flex items-center justify-center space-x-2 shadow-md"
+              className="w-full sm:w-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-extrabold text-sm sm:text-base px-8 py-4 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition shadow-sm"
             >
-              <Laptop className="w-5 h-5 text-sky-500" />
-              <span>{t.hero_btn_dashboards}</span>
+              <span>Demander une démonstration</span>
             </button>
           </div>
 
-          {/* Key Metrics Counters Bar */}
-          <div className="pt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            <div className="glass-card p-4 rounded-2xl border border-sky-500/20 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-sky-600 dark:text-sky-400">+150 000</div>
-              <div className="text-xs font-extrabold text-slate-500 mt-1">Élèves Gérés</div>
+          {/* 4 Feature Metric Cards Grid matching exact screenshot */}
+          <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
+            
+            {/* Card 1: 20+ Modules intégrés */}
+            <div className="glass-card p-6 rounded-3xl border border-slate-100 dark:border-slate-800 text-center space-y-2 hover:shadow-xl transition">
+              <div className="w-10 h-10 rounded-2xl bg-sky-50 dark:bg-sky-950 text-[#00a8ff] flex items-center justify-center mx-auto">
+                <BarChart2 className="w-5 h-5" />
+              </div>
+              <div className="text-3xl font-extrabold text-slate-900 dark:text-white">20+</div>
+              <div className="text-xs font-extrabold text-slate-800 dark:text-slate-200">Modules intégrés</div>
+              <div className="text-[11px] font-medium text-slate-400">Gestion complète</div>
             </div>
 
-            <div className="glass-card p-4 rounded-2xl border border-indigo-500/20 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">99.8%</div>
-              <div className="text-xs font-extrabold text-slate-500 mt-1">Recouvrement Frais</div>
+            {/* Card 2: 100% Automatisé */}
+            <div className="glass-card p-6 rounded-3xl border border-slate-100 dark:border-slate-800 text-center space-y-2 hover:shadow-xl transition">
+              <div className="w-10 h-10 rounded-2xl bg-sky-50 dark:bg-sky-950 text-[#00a8ff] flex items-center justify-center mx-auto">
+                <Zap className="w-5 h-5" />
+              </div>
+              <div className="text-3xl font-extrabold text-slate-900 dark:text-white">100%</div>
+              <div className="text-xs font-extrabold text-slate-800 dark:text-slate-200">Automatisé</div>
+              <div className="text-[11px] font-medium text-slate-400">Zéro tâche manuelle</div>
             </div>
 
-            <div className="glass-card p-4 rounded-2xl border border-emerald-500/20 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">2 Systèmes</div>
-              <div className="text-xs font-extrabold text-slate-500 mt-1">Bilingue FR & EN</div>
+            {/* Card 3: 24/7 Accessible */}
+            <div className="glass-card p-6 rounded-3xl border border-slate-100 dark:border-slate-800 text-center space-y-2 hover:shadow-xl transition">
+              <div className="w-10 h-10 rounded-2xl bg-sky-50 dark:bg-sky-950 text-[#00a8ff] flex items-center justify-center mx-auto">
+                <Shield className="w-5 h-5" />
+              </div>
+              <div className="text-3xl font-extrabold text-slate-900 dark:text-white">24/7</div>
+              <div className="text-xs font-extrabold text-slate-800 dark:text-slate-200">Accessible</div>
+              <div className="text-[11px] font-medium text-slate-400">Cloud sécurisé</div>
             </div>
 
-            <div className="glass-card p-4 rounded-2xl border border-amber-500/20 text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400">14 Jours</div>
-              <div className="text-xs font-extrabold text-slate-500 mt-1">Essai Gratuit Actif</div>
+            {/* Card 4: IA Dans chaque module */}
+            <div className="glass-card p-6 rounded-3xl border border-slate-100 dark:border-slate-800 text-center space-y-2 hover:shadow-xl transition">
+              <div className="w-10 h-10 rounded-2xl bg-sky-50 dark:bg-sky-950 text-[#00a8ff] flex items-center justify-center mx-auto">
+                <Brain className="w-5 h-5" />
+              </div>
+              <div className="text-3xl font-extrabold text-slate-900 dark:text-white">IA</div>
+              <div className="text-xs font-extrabold text-slate-800 dark:text-slate-200">Dans chaque module</div>
+              <div className="text-[11px] font-medium text-slate-400">Intelligence artificielle</div>
             </div>
+
           </div>
 
-          {/* High-End Official Master 3D Graphic Showcase (Scolyva Brand Name Prominently Featured) */}
+          {/* Master 3D Graphic Showcase */}
           <div className="pt-10 relative max-w-5xl mx-auto">
             <div className="glass-card-hero p-3.5 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800/90 scolyva-glow-card">
               <img
@@ -271,34 +271,13 @@ export default function LandingPage() {
                 alt="Plateforme Officielle Scolyva - Master 3D Showcase"
                 className="w-full h-auto rounded-2xl shadow-lg object-cover transform hover:scale-[1.01] transition duration-500"
               />
-              
-              {/* Floating Live Callout Badges */}
-              <div className="absolute top-6 left-6 glass-card p-3 rounded-2xl flex items-center space-x-3 shadow-lg animate-float hidden md:flex border border-white/40">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold">
-                  <Check className="w-5 h-5" />
-                </div>
-                <div className="text-left text-xs">
-                  <div className="font-extrabold text-slate-900 dark:text-white">Mobile Money Active</div>
-                  <div className="text-slate-500 dark:text-slate-400">Orange Money & MTN MoMo</div>
-                </div>
-              </div>
-
-              <div className="absolute bottom-6 right-6 glass-card p-3 rounded-2xl flex items-center space-x-3 shadow-lg animate-float hidden md:flex border border-white/40" style={{ animationDelay: '2s' }}>
-                <div className="w-9 h-9 rounded-xl bg-sky-500 text-white flex items-center justify-center font-bold">
-                  <Award className="w-5 h-5" />
-                </div>
-                <div className="text-left text-xs">
-                  <div className="font-extrabold text-slate-900 dark:text-white">Scolyva Dual Engine</div>
-                  <div className="text-slate-500 dark:text-slate-400">Weighted Average Engine</div>
-                </div>
-              </div>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* Interactive Feature Tabs Showcase with 4 Rich 3D Illustrations */}
+      {/* Interactive Feature Showcase with 3 AI Modules */}
       <section id="features" className="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full relative z-10 scroll-mt-24">
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
@@ -307,16 +286,16 @@ export default function LandingPage() {
           <p className="text-sm sm:text-base font-semibold text-slate-500 dark:text-slate-400">
             {t.feat_subtitle}
           </p>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-full mx-auto" />
+          <div className="w-24 h-1.5 bg-gradient-to-r from-[#00a8ff] to-indigo-600 rounded-full mx-auto" />
         </div>
 
-        {/* Feature Tabs Buttons */}
+        {/* Feature Tabs */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           <button
             onClick={() => setActiveFeatureTab('payments')}
             className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
               activeFeatureTab === 'payments'
-                ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-lg scale-105'
+                ? 'btn-eduvate-primary text-white shadow-lg scale-105'
                 : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
             }`}
           >
@@ -328,7 +307,7 @@ export default function LandingPage() {
             onClick={() => setActiveFeatureTab('academics')}
             className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
               activeFeatureTab === 'academics'
-                ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-lg scale-105'
+                ? 'btn-eduvate-primary text-white shadow-lg scale-105'
                 : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
             }`}
           >
@@ -340,7 +319,7 @@ export default function LandingPage() {
             onClick={() => setActiveFeatureTab('classroom')}
             className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
               activeFeatureTab === 'classroom'
-                ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-lg scale-105'
+                ? 'btn-eduvate-primary text-white shadow-lg scale-105'
                 : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
             }`}
           >
@@ -352,7 +331,7 @@ export default function LandingPage() {
             onClick={() => setActiveFeatureTab('security')}
             className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
               activeFeatureTab === 'security'
-                ? 'bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-lg scale-105'
+                ? 'btn-eduvate-primary text-white shadow-lg scale-105'
                 : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
             }`}
           >
@@ -366,7 +345,7 @@ export default function LandingPage() {
           {activeFeatureTab === 'payments' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-sky-500 bg-sky-50 dark:bg-sky-950 px-3.5 py-1.5 rounded-full border border-sky-200 dark:border-sky-800">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#00a8ff] bg-sky-50 dark:bg-sky-950 px-3.5 py-1.5 rounded-full border border-sky-200 dark:border-sky-800">
                   Passerelle CinetPay Intégrée
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
@@ -497,7 +476,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Pricing Section with Monthly / Annual Toggle & Exact Requested Tariffs */}
+      {/* Pricing Section with Pill Toggle */}
       <section id="pricing" className="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full relative z-10 scroll-mt-24">
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
@@ -509,7 +488,7 @@ export default function LandingPage() {
 
           {/* Monthly / Annual Billing Toggle Switch */}
           <div className="pt-4 flex items-center justify-center space-x-4">
-            <span className={`text-sm font-extrabold cursor-pointer transition ${pricingBillingCycle === 'MONTHLY' ? 'text-sky-600 dark:text-sky-400 scale-105' : 'text-slate-400'}`} onClick={() => setPricingBillingCycle('MONTHLY')}>
+            <span className={`text-sm font-extrabold cursor-pointer transition ${pricingBillingCycle === 'MONTHLY' ? 'text-[#00a8ff] dark:text-sky-400 scale-105' : 'text-slate-400'}`} onClick={() => setPricingBillingCycle('MONTHLY')}>
               Paiement Mensuel
             </span>
 
@@ -518,13 +497,13 @@ export default function LandingPage() {
               className="w-16 h-9 rounded-full bg-slate-200 dark:bg-slate-800 p-1 relative transition duration-300 focus:outline-none"
             >
               <div
-                className={`w-7 h-7 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 shadow-md transform transition duration-300 ${
+                className={`w-7 h-7 rounded-full btn-eduvate-primary shadow-md transform transition duration-300 ${
                   pricingBillingCycle === 'ANNUAL' ? 'translate-x-7' : 'translate-x-0'
                 }`}
               />
             </button>
 
-            <span className={`text-sm font-extrabold cursor-pointer transition flex items-center space-x-1.5 ${pricingBillingCycle === 'ANNUAL' ? 'text-sky-600 dark:text-sky-400 scale-105' : 'text-slate-400'}`} onClick={() => setPricingBillingCycle('ANNUAL')}>
+            <span className={`text-sm font-extrabold cursor-pointer transition flex items-center space-x-1.5 ${pricingBillingCycle === 'ANNUAL' ? 'text-[#00a8ff] dark:text-sky-400 scale-105' : 'text-slate-400'}`} onClick={() => setPricingBillingCycle('ANNUAL')}>
               <span>Paiement Annuel</span>
               <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] uppercase font-bold border border-emerald-500/30">
                 Économie 2 Mois
@@ -532,16 +511,16 @@ export default function LandingPage() {
             </span>
           </div>
 
-          <div className="w-24 h-1.5 bg-gradient-to-r from-sky-500 to-indigo-600 rounded-full mx-auto mt-4" />
+          <div className="w-24 h-1.5 bg-gradient-to-r from-[#00a8ff] to-indigo-600 rounded-full mx-auto mt-4" />
         </div>
 
         {/* Pricing Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          {/* Plan 1: STARTER (10,000 FCFA/Mois - 120,000 FCFA/An) */}
+          {/* Plan 1: STARTER */}
           <div className="glass-card p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition">
             <div className="space-y-4">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-sky-500 bg-sky-50 dark:bg-sky-950 px-3 py-1 rounded-full border border-sky-200 dark:border-sky-800">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-[#00a8ff] bg-sky-50 dark:bg-sky-950 px-3 py-1 rounded-full border border-sky-200 dark:border-sky-800">
                 Starter
               </span>
 
@@ -549,7 +528,7 @@ export default function LandingPage() {
                 <div className="text-3xl font-extrabold text-slate-900 dark:text-white">
                   10,000 FCFA <span className="text-xs text-slate-500 font-semibold">/ mois</span>
                 </div>
-                <div className="text-xs font-bold text-sky-600 dark:text-sky-400 mt-1">
+                <div className="text-xs font-bold text-[#00a8ff] dark:text-sky-400 mt-1">
                   Équivalent : 120,000 FCFA par an
                 </div>
                 <p className="text-xs text-slate-500 mt-2 font-medium">Pour écoles primaires & collèges jusqu'à 200 élèves</p>
@@ -566,26 +545,26 @@ export default function LandingPage() {
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                  <span>Feuilles d'appel & Présences</span>
+                  <span>Feuilles d'appel & Présences QR</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                  <span>Support client par WhatsApp</span>
+                  <span>Emploi du temps généré par IA</span>
                 </li>
               </ul>
             </div>
 
             <button
               onClick={() => setShowRegModal(true)}
-              className="w-full py-3.5 rounded-2xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-extrabold text-sm hover:opacity-90 transition shadow-md"
+              className="w-full py-3.5 rounded-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-extrabold text-sm hover:opacity-90 transition shadow-md"
             >
               Démarrer l'essai Starter 14j
             </button>
           </div>
 
-          {/* Plan 2: PRO (25,000 FCFA/Mois - 300,000 FCFA/An) */}
-          <div className="glass-card p-8 rounded-3xl space-y-6 border-2 border-sky-500 shadow-2xl relative flex flex-col justify-between transform md:-translate-y-2">
-            <div className="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-extrabold text-[10px] uppercase tracking-wider shadow-md">
+          {/* Plan 2: PRO */}
+          <div className="glass-card p-8 rounded-3xl space-y-6 border-2 border-[#00a8ff] shadow-2xl relative flex flex-col justify-between transform md:-translate-y-2">
+            <div className="absolute -top-3.5 right-6 px-3.5 py-1 rounded-full btn-eduvate-primary text-white font-extrabold text-[10px] uppercase tracking-wider shadow-md">
               Recommandé Écoles
             </div>
 
@@ -615,7 +594,7 @@ export default function LandingPage() {
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                  <span>Espace Parents & Reçus officiels</span>
+                  <span>Examens en ligne sécurisés IA</span>
                 </li>
                 <li className="flex items-center space-x-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
@@ -626,13 +605,13 @@ export default function LandingPage() {
 
             <button
               onClick={() => setShowRegModal(true)}
-              className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-extrabold text-sm hover:from-sky-600 hover:to-indigo-700 transition shadow-xl"
+              className="w-full py-3.5 rounded-full btn-eduvate-primary text-white font-extrabold text-sm transition shadow-xl"
             >
               Démarrer l'essai Pro 14j
             </button>
           </div>
 
-          {/* Plan 3: BUSINESS (40,000 FCFA/Mois - 480,000 FCFA/An) */}
+          {/* Plan 3: BUSINESS */}
           <div className="glass-card p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:shadow-xl transition">
             <div className="space-y-4">
               <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-500 bg-emerald-50 dark:bg-emerald-950 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
@@ -654,8 +633,8 @@ export default function LandingPage() {
                   <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                   <span>Tout le plan Pro inclus</span>
                 </li>
-                <li className="flex items-center space-x-2 font-bold text-sky-600 dark:text-sky-400">
-                  <CheckCircle2 className="w-4 h-4 text-sky-500 flex-shrink-0" />
+                <li className="flex items-center space-x-2 font-bold text-[#00a8ff] dark:text-sky-400">
+                  <CheckCircle2 className="w-4 h-4 text-[#00a8ff] flex-shrink-0" />
                   <span>CinetPay Mobile Money (OM / MoMo)</span>
                 </li>
                 <li className="flex items-center space-x-2">
@@ -671,7 +650,7 @@ export default function LandingPage() {
 
             <button
               onClick={() => setShowRegModal(true)}
-              className="w-full py-3.5 rounded-2xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-extrabold text-sm hover:opacity-90 transition shadow-md"
+              className="w-full py-3.5 rounded-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-extrabold text-sm hover:opacity-90 transition shadow-md"
             >
               Démarrer l'essai Business 14j
             </button>
@@ -693,7 +672,7 @@ export default function LandingPage() {
 
             <div>
               <h2 className="text-2xl font-extrabold flex items-center space-x-2.5 text-slate-900 dark:text-white">
-                <LogIn className="w-6 h-6 text-sky-500" />
+                <LogIn className="w-6 h-6 text-[#00a8ff]" />
                 <span>Connexion à votre Établissement</span>
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -715,7 +694,7 @@ export default function LandingPage() {
                     type="text"
                     required
                     placeholder="college-excellence"
-                    className="w-full px-4 py-2.5 rounded-l-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-mono focus:ring-2 focus:ring-sky-500 outline-none"
+                    className="w-full px-4 py-2.5 rounded-l-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-mono focus:ring-2 focus:ring-[#00a8ff] outline-none"
                     value={loginSlug}
                     onChange={e => setLoginSlug(e.target.value)}
                   />
@@ -731,7 +710,7 @@ export default function LandingPage() {
                   type="email"
                   required
                   placeholder="director@excellence.cm"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                   value={loginEmail}
                   onChange={e => setLoginEmail(e.target.value)}
                 />
@@ -743,7 +722,7 @@ export default function LandingPage() {
                   type="password"
                   required
                   placeholder="••••••••"
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                   value={loginPassword}
                   onChange={e => setLoginPassword(e.target.value)}
                 />
@@ -752,7 +731,7 @@ export default function LandingPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-extrabold text-sm shadow-lg transition"
+                className="w-full py-3.5 rounded-full btn-eduvate-primary text-white font-extrabold text-sm shadow-lg transition"
               >
                 {isSubmitting ? 'Connexion en cours...' : 'Se Connecter à l\'Espace École'}
               </button>
@@ -776,7 +755,7 @@ export default function LandingPage() {
               <form onSubmit={handleRegisterSubmit} className="space-y-6">
                 <div>
                   <h2 className="text-2xl font-extrabold flex items-center space-x-3 text-slate-900 dark:text-white">
-                    <Building2 className="w-7 h-7 text-sky-500" />
+                    <Building2 className="w-7 h-7 text-[#00a8ff]" />
                     <span>{t.reg_modal_title}</span>
                   </h2>
                   <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
@@ -797,7 +776,7 @@ export default function LandingPage() {
                       type="text"
                       required
                       placeholder="ex: Collège Excellence Douala"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                       value={formData.school_name}
                       onChange={e => setFormData({ ...formData, school_name: e.target.value })}
                     />
@@ -809,7 +788,7 @@ export default function LandingPage() {
                       type="text"
                       required
                       placeholder="ex: Douala / Yaoundé / Bamenda"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                       value={formData.city}
                       onChange={e => setFormData({ ...formData, city: e.target.value })}
                     />
@@ -821,7 +800,7 @@ export default function LandingPage() {
                       type="text"
                       required
                       placeholder="+237 677 11 22 33"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                       value={formData.phone}
                       onChange={e => setFormData({ ...formData, phone: e.target.value })}
                     />
@@ -830,7 +809,7 @@ export default function LandingPage() {
                   <div>
                     <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t.label_edu_system}</label>
                     <select
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                       value={formData.edu_system}
                       onChange={e => setFormData({ ...formData, edu_system: e.target.value })}
                     >
@@ -846,7 +825,7 @@ export default function LandingPage() {
                       type="text"
                       required
                       placeholder="Dr. Jean-Pierre Mbida"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                       value={formData.director_name}
                       onChange={e => setFormData({ ...formData, director_name: e.target.value })}
                     />
@@ -858,7 +837,7 @@ export default function LandingPage() {
                       type="email"
                       required
                       placeholder="contact@ecole.cm"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                       value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value, admin_email: e.target.value })}
                     />
@@ -870,7 +849,7 @@ export default function LandingPage() {
                       type="text"
                       required
                       placeholder="Jean-Pierre"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                       value={formData.admin_first_name}
                       onChange={e => setFormData({ ...formData, admin_first_name: e.target.value })}
                     />
@@ -882,13 +861,13 @@ export default function LandingPage() {
                       type="text"
                       required
                       placeholder="Mbida"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                       value={formData.admin_last_name}
                       onChange={e => setFormData({ ...formData, admin_last_name: e.target.value })}
                     />
                   </div>
 
-                  {/* Password Field with Eye Toggle */}
+                  {/* Password Field */}
                   <div className="relative">
                     <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t.label_password}</label>
                     <div className="relative">
@@ -896,7 +875,7 @@ export default function LandingPage() {
                         type={showPassword ? 'text' : 'password'}
                         required
                         placeholder="••••••••"
-                        className="w-full px-4 py-2.5 pr-10 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                        className="w-full px-4 py-2.5 pr-10 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                         value={formData.admin_password}
                         onChange={e => setFormData({ ...formData, admin_password: e.target.value })}
                       />
@@ -904,14 +883,13 @@ export default function LandingPage() {
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                        title={showPassword ? "Masquer" : "Afficher"}
                       >
                         {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </button>
                     </div>
                   </div>
 
-                  {/* Confirm Password Field with Eye Toggle */}
+                  {/* Confirm Password Field */}
                   <div className="relative">
                     <label className="block text-xs font-bold uppercase text-slate-500 mb-1">{t.label_confirm_password}</label>
                     <div className="relative">
@@ -919,7 +897,7 @@ export default function LandingPage() {
                         type={showConfirmPassword ? 'text' : 'password'}
                         required
                         placeholder="••••••••"
-                        className="w-full px-4 py-2.5 pr-10 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                        className="w-full px-4 py-2.5 pr-10 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-sm font-medium focus:ring-2 focus:ring-[#00a8ff] outline-none"
                         value={formData.admin_confirm_password}
                         onChange={e => setFormData({ ...formData, admin_confirm_password: e.target.value })}
                       />
@@ -927,7 +905,6 @@ export default function LandingPage() {
                         type="button"
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                        title={showConfirmPassword ? "Masquer" : "Afficher"}
                       >
                         {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </button>
@@ -938,7 +915,7 @@ export default function LandingPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-sky-500 via-indigo-600 to-emerald-500 hover:from-sky-600 hover:to-indigo-700 text-white font-extrabold text-base shadow-lg transition"
+                  className="w-full py-4 rounded-full btn-eduvate-primary text-white font-extrabold text-base shadow-lg transition"
                 >
                   {isSubmitting ? 'Création de votre établissement en cours...' : t.btn_start_trial}
                 </button>
@@ -962,7 +939,7 @@ export default function LandingPage() {
 
                 <button
                   onClick={() => window.location.href = '/dashboard'}
-                  className="w-full py-4 rounded-2xl bg-sky-600 text-white font-extrabold text-lg shadow-xl hover:bg-sky-700 transition"
+                  className="w-full py-4 rounded-full btn-eduvate-primary text-white font-extrabold text-lg shadow-xl hover:opacity-95 transition"
                 >
                   Accéder à l'Espace Administration
                 </button>
