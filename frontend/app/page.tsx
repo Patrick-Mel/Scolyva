@@ -4,24 +4,29 @@ import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import ReadonlyBanner from '@/components/ReadonlyBanner';
 import LiveActivityToast from '@/components/LiveActivityToast';
+import FAQAccordion from '@/components/FAQAccordion';
+import ContactDemoModal from '@/components/ContactDemoModal';
+
 import { translations, Language } from '@/lib/i18n';
 import { apiRequest } from '@/lib/api';
 import {
   ShieldCheck, BookOpen, CreditCard, Users, CheckCircle2, ArrowRight,
   Sparkles, Building2, Phone, Mail, User, Eye, EyeOff, Lock, Laptop, Check,
   Award, TrendingUp, DollarSign, LogIn, Globe, CheckCircle, Zap, Star,
-  GraduationCap, FileSpreadsheet, RefreshCw, BarChart2, Shield, Brain
+  GraduationCap, FileSpreadsheet, RefreshCw, BarChart2, Shield, Brain,
+  MessageSquare, HelpCircle, ExternalLink, ChevronRight
 } from 'lucide-react';
 
 export default function LandingPage() {
   const [lang, setLang] = useState<Language>('fr');
   const [darkMode, setDarkMode] = useState(false); // Default to Light mode
-  const [activeFeatureTab, setActiveFeatureTab] = useState<'payments' | 'academics' | 'security' | 'classroom'>('payments');
+  const [activeFeatureTab, setActiveFeatureTab] = useState<'payments' | 'academics' | 'security' | 'classroom' | 'timetables' | 'exams'>('timetables');
   const [pricingBillingCycle, setPricingBillingCycle] = useState<'MONTHLY' | 'ANNUAL'>('MONTHLY');
 
   // Modals state
   const [showRegModal, setShowRegModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showDemoModal, setShowDemoModal] = useState(false);
 
   // Registration password state
   const [showPassword, setShowPassword] = useState(false);
@@ -177,7 +182,7 @@ export default function LandingPage() {
         onSubscribeClick={() => {}}
       />
 
-      {/* Hero Section matching EXACT Eduvate Maquette Layout */}
+      {/* SECTION 1: HERO SECTION matching EXACT Eduvate Maquette Layout */}
       <section className="relative pt-12 sm:pt-16 pb-20 px-4 sm:px-6 text-center overflow-hidden">
         <div className="max-w-4xl mx-auto space-y-8 relative z-10">
           
@@ -211,14 +216,14 @@ export default function LandingPage() {
             </button>
 
             <button
-              onClick={() => window.location.href = '/dashboard?demo=true'}
+              onClick={() => setShowDemoModal(true)}
               className="w-full sm:w-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 font-extrabold text-sm sm:text-base px-8 py-4 rounded-full hover:bg-slate-50 dark:hover:bg-slate-800 transition shadow-sm"
             >
               <span>Demander une démonstration</span>
             </button>
           </div>
 
-          {/* 4 Feature Metric Cards Grid matching exact screenshot */}
+          {/* SECTION 2: 4 Feature Metric Cards Grid matching exact screenshot */}
           <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
             
             {/* Card 1: 20+ Modules intégrés */}
@@ -263,7 +268,7 @@ export default function LandingPage() {
 
           </div>
 
-          {/* Master 3D Graphic Showcase */}
+          {/* SECTION 3: Master 3D Graphic Showcase */}
           <div className="pt-10 relative max-w-5xl mx-auto">
             <div className="glass-card-hero p-3.5 rounded-3xl relative overflow-hidden shadow-2xl border border-slate-200/90 dark:border-slate-800/90 scolyva-glow-card">
               <img
@@ -277,7 +282,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Interactive Feature Showcase with 3 AI Modules */}
+      {/* SECTION 4: Interactive Feature Showcase with AI Modules */}
       <section id="features" className="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full relative z-10 scroll-mt-24">
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
@@ -291,6 +296,30 @@ export default function LandingPage() {
 
         {/* Feature Tabs */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
+          <button
+            onClick={() => setActiveFeatureTab('timetables')}
+            className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
+              activeFeatureTab === 'timetables'
+                ? 'btn-eduvate-primary text-white shadow-lg scale-105'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
+            }`}
+          >
+            <Sparkles className="w-4 h-4 text-amber-300" />
+            <span>Emplois du temps IA</span>
+          </button>
+
+          <button
+            onClick={() => setActiveFeatureTab('exams')}
+            className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
+              activeFeatureTab === 'exams'
+                ? 'btn-eduvate-primary text-white shadow-lg scale-105'
+                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
+            }`}
+          >
+            <Lock className="w-4 h-4 text-indigo-400" />
+            <span>Examens Sécurisés IA</span>
+          </button>
+
           <button
             onClick={() => setActiveFeatureTab('payments')}
             className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
@@ -312,36 +341,78 @@ export default function LandingPage() {
             }`}
           >
             <BookOpen className="w-4 h-4 text-sky-400" />
-            <span>Notes, Bulletins & Coefs</span>
-          </button>
-
-          <button
-            onClick={() => setActiveFeatureTab('classroom')}
-            className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
-              activeFeatureTab === 'classroom'
-                ? 'btn-eduvate-primary text-white shadow-lg scale-105'
-                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
-            }`}
-          >
-            <Users className="w-4 h-4 text-indigo-400" />
-            <span>Cahier de classe & Présences</span>
-          </button>
-
-          <button
-            onClick={() => setActiveFeatureTab('security')}
-            className={`flex items-center space-x-2 px-6 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition shadow-sm ${
-              activeFeatureTab === 'security'
-                ? 'btn-eduvate-primary text-white shadow-lg scale-105'
-                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800'
-            }`}
-          >
-            <ShieldCheck className="w-4 h-4 text-amber-400" />
-            <span>Isolation Multi-Tenant</span>
+            <span>Bulletins & Moyennes</span>
           </button>
         </div>
 
         {/* Feature Tab Content Display */}
         <div className="glass-card p-6 sm:p-10 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl">
+          {activeFeatureTab === 'timetables' && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="space-y-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#00a8ff] bg-sky-50 dark:bg-sky-950 px-3.5 py-1.5 rounded-full border border-sky-200 dark:border-sky-800">
+                  IA & Solveur CSP Intégré
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                  Génération Automatique d'Emplois du Temps sans Conflit
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                  Notre algorithme d'IA résout en quelques secondes l'ensemble des contraintes de votre établissement : disponibilités des professeurs, capacités des salles, volumes horaires et non-chevauchement des cours.
+                </p>
+                <div className="space-y-2 text-sm font-bold text-slate-700 dark:text-slate-300">
+                  <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span>Grille interactives modifiables par glisser-déposer</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span>Consultation dédiée par classe, professeur et élève</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <img
+                  src="/hero_illustration.jpg"
+                  alt="Emplois du temps automatisés par IA"
+                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
+                />
+              </div>
+            </div>
+          )}
+
+          {activeFeatureTab === 'exams' && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="space-y-4">
+                <span className="text-xs font-bold uppercase tracking-wider text-indigo-500 bg-indigo-50 dark:bg-indigo-950 px-3.5 py-1.5 rounded-full border border-indigo-200 dark:border-indigo-800">
+                  Surveillance & Anti-Triche IA
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                  Examens en Ligne Sécurisés & Rapport de Fiabilité
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                  Faites passer des évaluations en ligne avec minuteur live, sauvegarde automatique résiliente aux pannes Internet et détection en temps réel des pertes de focus d'écran.
+                </p>
+                <div className="space-y-2 text-sm font-bold text-slate-700 dark:text-slate-300">
+                  <div className="flex items-center space-x-2 text-indigo-600 dark:text-indigo-400">
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span>Autocorrection instantanée des QCM & barème assisté</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-indigo-600 dark:text-indigo-400">
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span>Rapport de confiance de 0% à 100% généré pour l'enseignant</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <img
+                  src="/report_card_illustration.jpg"
+                  alt="Examens en ligne sécurisés"
+                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
+                />
+              </div>
+            </div>
+          )}
+
           {activeFeatureTab === 'payments' && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-4">
@@ -400,74 +471,8 @@ export default function LandingPage() {
               </div>
               <div>
                 <img
-                  src="/report_card_illustration.jpg"
-                  alt="Analytiques et Bulletins de Notes Bilingues"
-                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
-                />
-              </div>
-            </div>
-          )}
-
-          {activeFeatureTab === 'classroom' && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-500 bg-emerald-50 dark:bg-emerald-950 px-3.5 py-1.5 rounded-full border border-emerald-200 dark:border-emerald-800">
-                  Gestion de Classe Intelligente
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-                  Cahier de Notes & Feuilles d'Appel en Temps Réel
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
-                  Les enseignants saisissent les notes par séquence et font l'appel en un clic depuis leur tablette ou smartphone. Les parents reçoivent une alerte immédiate en cas d'absence.
-                </p>
-                <div className="space-y-2 text-sm font-bold text-slate-700 dark:text-slate-300">
-                  <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
-                    <CheckCircle2 className="w-5 h-5" />
-                    <span>Suivi quotidien de la discipline et des absences</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400">
-                    <CheckCircle2 className="w-5 h-5" />
-                    <span>Accès sécurisé pour chaque professeur selon son emploi du temps</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <img
                   src="/school_life_illustration.jpg"
-                  alt="Cahier de classe et vie scolaire 3D"
-                  className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
-                />
-              </div>
-            </div>
-          )}
-
-          {activeFeatureTab === 'security' && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-500 bg-amber-50 dark:bg-amber-950 px-3.5 py-1.5 rounded-full border border-amber-200 dark:border-amber-800">
-                  Sécurité & Multitenancy
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-                  Isolation Stricte Serveur par `school_id`
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
-                  {t.feat_3_desc}
-                </p>
-                <div className="space-y-2 text-sm font-bold text-slate-700 dark:text-slate-300">
-                  <div className="flex items-center space-x-2 text-amber-600 dark:text-amber-400">
-                    <CheckCircle2 className="w-5 h-5" />
-                    <span>Garantie de non-fuite de données entre établissements</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-amber-600 dark:text-amber-400">
-                    <CheckCircle2 className="w-5 h-5" />
-                    <span>Stockage Cloudflare R2 avec URLs signées S3 temporaires</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <img
-                  src="/hero_illustration.jpg"
-                  alt="Isolation Multi-Tenant Scolyva"
+                  alt="Analytiques et Bulletins de Notes Bilingues"
                   className="w-full h-auto rounded-2xl shadow-lg border border-slate-200 dark:border-slate-800 object-cover hover:scale-[1.01] transition duration-300"
                 />
               </div>
@@ -476,7 +481,42 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Pricing Section with Pill Toggle */}
+      {/* SECTION 5: ABOUT SECTION (À propos) */}
+      <section id="about" className="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full relative z-10 scroll-mt-24">
+        <div className="glass-card p-8 sm:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-6">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950 border border-sky-200 dark:border-sky-800 text-[#00a8ff] text-xs font-extrabold">
+            <Building2 className="w-3.5 h-3.5" />
+            <span>À Propos de Scolyva</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
+            Une plateforme conçue sur mesure pour les réalités des écoles d'Afrique francophone
+          </h2>
+
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-4xl">
+            Scolyva est né d'une volonté claire : offrir aux directeurs d'écoles, intendants, enseignants et parents un outil puissant, moderne et intuitif capable de fonctionner avec ou sans connexion Internet permanente, en s'adaptant parfaitement aux systèmes éducatifs Francophone et Anglophone.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
+            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div className="text-lg font-extrabold text-slate-900 dark:text-white">Multi-Tenant Isolé</div>
+              <p className="text-xs text-slate-500">Chaque école dispose d'un espace totalement étanche et sécurisé par school_id.</p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div className="text-lg font-extrabold text-slate-900 dark:text-white">Double Système Bilingue</div>
+              <p className="text-xs text-slate-500">Support simultané des séries Francophones et des sections Anglophones.</p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div className="text-lg font-extrabold text-slate-900 dark:text-white">Cloud R2 & RGPD</div>
+              <p className="text-xs text-slate-500">Stockage rapide des bulletins PDF et protection stricte des données des mineurs.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: PRICING SECTION (Tarifs) */}
       <section id="pricing" className="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full relative z-10 scroll-mt-24">
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
@@ -657,6 +697,92 @@ export default function LandingPage() {
           </div>
 
         </div>
+      </section>
+
+      {/* SECTION 7: FAQ ACCORDION SECTION (Questions Fréquentes) */}
+      <section className="py-16 px-4 sm:px-6 max-w-7xl mx-auto w-full relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-50 dark:bg-sky-950 border border-sky-200 dark:border-sky-800 text-[#00a8ff] text-xs font-extrabold">
+            <HelpCircle className="w-3.5 h-3.5" />
+            <span>Des réponses à vos questions</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+            Foire Aux Questions (FAQ)
+          </h2>
+          <p className="text-sm font-medium text-slate-500">
+            Tout ce que vous devez savoir pour démarrer sereinement avec Scolyva.
+          </p>
+        </div>
+
+        <FAQAccordion lang={lang} />
+      </section>
+
+      {/* SECTION 8: CONTACT & FOOTER */}
+      <section id="contact" className="pt-16 pb-12 px-4 sm:px-6 max-w-7xl mx-auto w-full relative z-10 border-t border-slate-200 dark:border-slate-800">
+        
+        {/* Contact Banner */}
+        <div className="glass-card p-8 sm:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 mb-16">
+          <div className="space-y-2 text-center md:text-left">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+              Prêt à moderniser votre établissement avec l'IA ?
+            </h3>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+              Rejoignez plus de 150 000 élèves et directeurs d'écoles qui font confiance à Scolyva.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+            <button
+              onClick={() => setShowRegModal(true)}
+              className="btn-eduvate-primary text-white font-extrabold text-sm px-8 py-4 rounded-full shadow-xl hover:scale-[1.02] transition"
+            >
+              Créer mon compte école
+            </button>
+            <button
+              onClick={() => setShowDemoModal(true)}
+              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-100 font-extrabold text-sm px-8 py-4 rounded-full shadow-sm hover:bg-slate-50 transition"
+            >
+              Demander une démo
+            </button>
+          </div>
+        </div>
+
+        {/* Footer Navigation & Copyright */}
+        <footer className="grid grid-cols-1 md:grid-cols-4 gap-8 text-xs text-slate-500 dark:text-slate-400 pt-6">
+          <div className="space-y-3">
+            <div className="text-base font-extrabold text-slate-900 dark:text-white">Scolyva</div>
+            <p className="leading-relaxed">
+              Plateforme SaaS de gestion scolaire propulsée par l'intelligence artificielle pour les établissements d'Afrique francophone.
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <div className="font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">Navigation</div>
+            <a href="/" className="block hover:text-[#00a8ff]">Accueil</a>
+            <a href="#features" className="block hover:text-[#00a8ff]">Fonctionnalités IA</a>
+            <a href="#pricing" className="block hover:text-[#00a8ff]">Formules & Tarifs</a>
+            <a href="#about" className="block hover:text-[#00a8ff]">À propos</a>
+            <a href="#contact" className="block hover:text-[#00a8ff]">Contact & Démo</a>
+          </div>
+
+          <div className="space-y-2">
+            <div className="font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">Modules IA</div>
+            <span className="block">Emploi du temps automatisé</span>
+            <span className="block">Présence par QR Code</span>
+            <span className="block">Examens sécurisés en ligne</span>
+            <span className="block">Passerelle CinetPay Mobile Money</span>
+          </div>
+
+          <div className="space-y-2">
+            <div className="font-extrabold text-slate-900 dark:text-white uppercase tracking-wider text-[11px]">Mentions Légales</div>
+            <span className="block">Conformité Protection Données</span>
+            <span className="block">Isolation Multi-Tenant Cloud</span>
+            <span className="block">Support Technique 24/7</span>
+            <span className="block text-emerald-500 font-bold">© 2026 Scolyva Inc. Tous droits réservés.</span>
+          </div>
+        </footer>
+
       </section>
 
       {/* School Login Modal */}
@@ -947,6 +1073,11 @@ export default function LandingPage() {
             )}
           </div>
         </div>
+      )}
+
+      {/* Demo Request Modal */}
+      {showDemoModal && (
+        <ContactDemoModal lang={lang} onClose={() => setShowDemoModal(false)} />
       )}
 
       {/* Floating Live Activity Feed Toast */}
