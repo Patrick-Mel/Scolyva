@@ -81,6 +81,33 @@ export const translations = {
     dash_title_parent: "Espace Parent (Suivi Enfants & Paiement)",
     dash_title_student: "Mon Dossier Scolaire & Assiduité",
 
+    // Module 1: Timetables
+    tab_timetable: "Emploi du temps IA",
+    timetable_generate_btn: "Générer l'Emploi du temps IA",
+    timetable_conflicts_none: "Aucun conflit détecté",
+    timetable_conflicts_warning: "Conflits détectés dans le planning",
+    timetable_room_cap: "Places disponibles",
+    timetable_drag_drop: "Glisser-déposer pour ajuster le créneau",
+
+    // Module 2: QR Attendance
+    tab_qr_attendance: "Appel QR Code",
+    qr_terminal_title: "Terminal d'Appel par Scanner QR",
+    qr_pass_title: "Pass Badge QR Élève",
+    qr_status_present: "Présent à l'heure",
+    qr_status_late: "En Retard",
+    qr_status_absent: "Absent",
+    qr_parent_notified: "Parent Notifié par SMS / In-App",
+
+    // Module 3: Online Exams
+    tab_online_exams: "Examens Sécurisés IA",
+    exam_start_btn: "Commencer l'Examen Sécurisé",
+    exam_timer_remaining: "Temps Restant",
+    exam_auto_saving: "Sauvegarde automatique active",
+    exam_integrity_report: "Rapport d'Intégrité & Fiabilité",
+    exam_trust_score: "Score de Confiance",
+    exam_tab_switches: "Changements d'Onglet Détectés",
+    exam_copy_attempts: "Tentatives de Copier-Coller",
+
     // Stats Cards
     stat_students: "Élèves Inscrits",
     stat_collected: "Frais Encaissés",
@@ -199,6 +226,33 @@ export const translations = {
     dash_title_teacher: "Teacher Portal (Grades & Attendance)",
     dash_title_parent: "Parent Portal (Child Overview & Payment)",
     dash_title_student: "My Academic Record & Attendance",
+
+    // Module 1: Timetables
+    tab_timetable: "AI Timetable",
+    timetable_generate_btn: "Generate AI Timetable",
+    timetable_conflicts_none: "No schedule conflicts detected",
+    timetable_conflicts_warning: "Schedule conflicts detected",
+    timetable_room_cap: "Available seats",
+    timetable_drag_drop: "Drag & drop to swap time slot",
+
+    // Module 2: QR Attendance
+    tab_qr_attendance: "QR Code Roll Call",
+    qr_terminal_title: "QR Scanner Attendance Terminal",
+    qr_pass_title: "Student QR Badge Pass",
+    qr_status_present: "Present On Time",
+    qr_status_late: "Late Arrival",
+    qr_status_absent: "Absent",
+    qr_parent_notified: "Parent Notified via SMS / In-App",
+
+    // Module 3: Online Exams
+    tab_online_exams: "AI Secure Exams",
+    exam_start_btn: "Start Secure Online Exam",
+    exam_timer_remaining: "Time Remaining",
+    exam_auto_saving: "Auto-save active",
+    exam_integrity_report: "Integrity & Reliability Report",
+    exam_trust_score: "Trust Score",
+    exam_tab_switches: "Tab Focus Loss Events",
+    exam_copy_attempts: "Copy-Paste Attempts",
 
     // Stats Cards
     stat_students: "Enrolled Students",

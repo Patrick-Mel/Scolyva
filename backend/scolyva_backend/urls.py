@@ -12,6 +12,8 @@ urlpatterns = [
     path('api/v1/attendance/', include('apps.attendance.urls')),
     path('api/v1/notifications/', include('apps.notifications.urls')),
     path('api/v1/storage/', include('apps.storage.urls')),
+    path('api/v1/timetables/', include('apps.timetables.urls')),
+    path('api/v1/exams/', include('apps.exams.urls')),
 ]
 
 if settings.DEBUG:

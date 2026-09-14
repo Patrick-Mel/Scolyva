@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'apps.attendance',
     'apps.notifications',
     'apps.storage',
+    'apps.timetables',
+    'apps.exams',
 ]
 
 MIDDLEWARE = [
